@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: Electronic Badge/Attendance System
+  datasource:
+    username: ebas
+    password: ebas
+    url: jdbc:postgresql://localhost:5432/ebas
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+    show-sql: true
+    defer-datasource-initialization: true
+    generate-ddl: true
+  sql:
+    init:
+      mode: always
+#  mail:
+#    host: sandbox.smtp.mailtrap.io
+#    port: 2525
+#    username: 6f8d6b84a07054
+#    password: 12f15b319102c2
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#  email:
+#    sender: notifications@nexthome.com

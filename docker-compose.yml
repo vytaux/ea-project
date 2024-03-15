@@ -1,0 +1,10 @@
+services:
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: ebas
+      POSTGRES_PASSWORD: ebas
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
