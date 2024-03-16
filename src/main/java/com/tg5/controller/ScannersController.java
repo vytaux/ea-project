@@ -19,6 +19,7 @@ public class ScannersController {
     }
 
     // TODO scanners CRUD
+    @RequestMapping
     public List<Scanner> getScanners() {
         return scannerRepository.findAll();
     }
