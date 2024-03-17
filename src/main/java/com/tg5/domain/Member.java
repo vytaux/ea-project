@@ -2,12 +2,13 @@ package com.tg5.domain;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "members")
-public class Member {
+public class Member implements Serializable {
 
     @Id
     @GeneratedValue

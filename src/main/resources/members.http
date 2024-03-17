@@ -1,0 +1,16 @@
+GET http://localhost:8080/badge-system/members
+Authorization: Basic user 123
+
+###
+
+GET http://localhost:8080/badge-system/members/1
+Authorization: Basic user 123
+
+###
+POST http://localhost:8080/badge-system/members
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+
+}
