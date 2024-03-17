@@ -2,13 +2,11 @@ package com.tg5.controller;
 
 import com.tg5.domain.Event;
 import com.tg5.service.contract.EventPayload;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import edu.miu.common.controller.BaseReadWriteController;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/events")
 public class EventsController extends BaseReadWriteController<EventPayload, Event, Long> {
 
