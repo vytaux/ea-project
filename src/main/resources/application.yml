@@ -1,4 +1,20 @@
+common:
+  security:
+    enabled: false
+  feign-oauth:
+    enabled: false
+  mvc:
+    enabled: false
+server:
+  ssl:
+    enabled: false
+  servlet:
+    context-path: /badge-system
 spring:
+  security:
+    user:
+      name: user
+      password: 123
   application:
     name: Electronic Badge/Attendance System
   datasource:
@@ -18,16 +34,3 @@ spring:
   sql:
     init:
       mode: always
-#  mail:
-#    host: sandbox.smtp.mailtrap.io
-#    port: 2525
-#    username: 6f8d6b84a07054
-#    password: 12f15b319102c2
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#  email:
-#    sender: notifications@nexthome.com
