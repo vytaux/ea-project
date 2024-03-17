@@ -1,6 +1,5 @@
 package com.tg5.controller;
 
-import com.tg5.domain.Event;
 import com.tg5.domain.Location;
 import com.tg5.repository.LocationRepository;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,5 @@
 package com.tg5.controller;
 
-import com.tg5.domain.Event;
 import com.tg5.domain.Scanner;
 import com.tg5.repository.ScannerRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
