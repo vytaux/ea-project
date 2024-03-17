@@ -35,6 +35,14 @@ spring:
     init:
       mode: always
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 logging:
   level:
     root: INFO
+    springframework:
+      web: DEBUG
