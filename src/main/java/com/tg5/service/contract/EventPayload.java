@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tg5.domain.AccountType;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 public class EventPayload implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
