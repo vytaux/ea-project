@@ -42,7 +42,7 @@ public class EventsController extends BaseReadWriteController<EventPayload, Even
 //    }
 
 
-    // TODO sessions CRUD /events/{eventId}/sessions
+    //TODO sessions CRUD /events/{eventId}/sessions
 //    @GetMapping("/{eventId}/sessions")
 //    public List<Session> getEventSessions(@PathVariable Long eventId) {
 //        Event byId = eventRepository.findById(eventId)

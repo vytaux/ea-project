@@ -20,6 +20,7 @@ public class Member implements Serializable {
 
     private String email;
 
+
     @ManyToMany
     @JoinTable(
         name = "members_roles",

@@ -1,8 +1,10 @@
 package com.tg5.service.contract;
 
+
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 public class SessionPayload implements Serializable {
@@ -11,7 +13,11 @@ public class SessionPayload implements Serializable {
 
     private Long id;
 
+    private String name;
+
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private EventPayload event;
 
-    private String name;
 }
+
