@@ -1,8 +1,8 @@
 package com.tg5.repository;
 
 import com.tg5.domain.Location;
-import com.tg5.domain.Member;
-import org.springframework.data.jpa.repository.JpaRepository;
+import edu.miu.common.repository.BaseRepository;
 
-public interface LocationRepository extends JpaRepository<Location, Long>{
+public interface LocationRepository extends BaseRepository<Location, Long> {
+
 }
