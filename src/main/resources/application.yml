@@ -9,7 +9,7 @@ server:
   ssl:
     enabled: false
   servlet:
-    context-path: /badge-system
+    context-path: /v1/badge-system
 spring:
   security:
     user:
