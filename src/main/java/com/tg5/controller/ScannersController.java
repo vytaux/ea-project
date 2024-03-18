@@ -14,13 +14,4 @@ import java.util.List;
 @RestController
 @RequestMapping("/scanners")
 public class ScannersController extends BaseReadWriteController<ScannerPayload, Scanner, Long> {
-
-//    private final ScannerRepository scannerRepository;
-//
-//    public ScannersController(ScannerRepository scannerRepository) {
-//        this.scannerRepository = scannerRepository;
-//    }
-
-    // TODO scanners CRUD --- done
-    // [advanced] scanner records CRUD /scanners/{scannerCode}/records
 }
