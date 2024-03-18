@@ -5,4 +5,5 @@ import com.tg5.domain.Scanner;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ScannerRepository extends JpaRepository<Scanner, Long>{
+
 }

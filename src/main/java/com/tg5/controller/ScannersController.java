@@ -14,12 +14,14 @@ public class ScannersController {
     private final ScannerRepository scannerRepository;
 
     public ScannersController(ScannerRepository scannerRepository) {
+
         this.scannerRepository = scannerRepository;
     }
 
     // TODO scanners CRUD
     @RequestMapping
     public List<Scanner> getScanners() {
+
         return scannerRepository.findAll();
     }
     // [advanced] scanner records CRUD /scanners/{scannerCode}/records
