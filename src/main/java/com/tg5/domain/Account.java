@@ -1,13 +1,23 @@
+/**
+ * Author: Dip Ranjon Das
+ * Date: 03/18/2023
+ * Feature: Account
+**/
+
 package com.tg5.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.io.Serializable;
+
+//Domain class Accounts
 @Entity
+@Data
 @Table(name = "accounts")
-public class Account {
+public class Account implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -17,30 +27,13 @@ public class Account {
 
     private String description;
 
-    public Account() {
-    }
+    private Double balance;
 
-    public Long getId() {
-        return id;
-    }
+    //Account have accountType
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    //One Member can have many Accounts
+    @ManyToOne
+    private Member member;
 }
