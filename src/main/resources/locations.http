@@ -1,0 +1,11 @@
+GET http://localhost:8080/badge-system/locations
+
+###
+POST http://localhost:8080/badge-system/locations
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "agriro",
+  "locationType": "DINING_HALL"
+}
