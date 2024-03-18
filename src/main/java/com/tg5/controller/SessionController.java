@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/{eventId}/allSessions")
+@RequestMapping("/events/{eventId}/sessions")
 public class SessionController extends BaseReadWriteController<SessionPayload, Session, Long> {
 }
 //    @Autowired
