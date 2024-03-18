@@ -20,27 +20,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.io.Serializable;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/events/{eventId}/sessions")
 public class SessionsController extends BaseReadWriteController<SessionPayload, Session, Long> {
-
-    private final EventRepository eventRepository;
-    private final SessionRepository sessionRepository;
-    private final SessionPayloadToSessionMapper requestMapper;
-    private final SessionToSessionPayloadMapper responseMapper;
-
-    // TODO sessions CRUD /events/{eventId}/sessions
-    @PostMapping
-    public ResponseEntity<?> create(@RequestBody SessionPayload request) {
-        Event event = eventRepository.findById(request.getEvent().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Event not found"));
-
-        Session session = requestMapper.map(request);
-        session.setEvent(event);
-
-        Session saved = sessionRepository.save(session);
-        
-        SessionPayload response = responseMapper.map(saved);
-        return ResponseEntity.ok(response);
-    }
 }
