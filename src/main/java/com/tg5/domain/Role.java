@@ -20,7 +20,8 @@ public class Role implements Serializable {
     private String name;
 
 
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<AccountType> defaultAccountTypes = new ArrayList<>();
 
 }
