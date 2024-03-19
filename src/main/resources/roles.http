@@ -1,0 +1,34 @@
+POST http://localhost:8080/v1/badge-system/roles
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "student",
+  "defaultAccountTypes" : [1, 2, 3]
+}
+
+###
+
+POST http://localhost:8080/v1/badge-system/roles
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "staff",
+  "defaultAccountTypes" : [2, 3]
+}
+
+###
+
+POST http://localhost:8080/v1/badge-system/roles
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "faculty",
+  "defaultAccountTypes" : [1, 2]
+}
+
+###
+GET http://localhost:8080/v1/badge-system/roles
+Authorization: Basic user 123
