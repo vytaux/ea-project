@@ -6,24 +6,19 @@ import com.tg5.repository.AccountTypeRepository;
 import com.tg5.repository.RoleRepository;
 import com.tg5.service.contract.RolePayload;
 import edu.miu.common.service.BaseReadWriteServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RoleServiceImpl extends BaseReadWriteServiceImpl<RolePayload, Role, Long> implements RoleService {
 
     private final AccountTypeRepository accountTypeRepository;
 
     private final RoleRepository roleRepository;
-
-    @Autowired
-    public RoleServiceImpl(AccountTypeRepository accountTypeRepository, RoleRepository roleRepository) {
-        this.accountTypeRepository = accountTypeRepository;
-        this.roleRepository = roleRepository;
-    }
-
 
     @Override
     public RolePayload create(RolePayload request) {

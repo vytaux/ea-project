@@ -6,19 +6,15 @@ import com.tg5.domain.VirtualDollar;
 import com.tg5.repository.AccountTypeRepository;
 import com.tg5.service.contract.AccountTypePayload;
 import edu.miu.common.service.BaseReadWriteServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
 @Service
+@RequiredArgsConstructor
 public class AccountTypeServiceImpl extends BaseReadWriteServiceImpl<AccountTypePayload, AccountType, Long> implements AccountTypeService {
 
     private final AccountTypeRepository accountTypeRepository;
-
-    @Autowired
-    public AccountTypeServiceImpl(AccountTypeRepository accountTypeRepository) {
-        this.accountTypeRepository = accountTypeRepository;
-    }
 
     @Override
     public AccountTypePayload create(AccountTypePayload request) {
@@ -26,9 +22,9 @@ public class AccountTypeServiceImpl extends BaseReadWriteServiceImpl<AccountType
         accountType.setName(request.getName());
         accountType.setDescription(request.getDescription());
         if (request.getCurrencyType().equalsIgnoreCase("points")) {
-            accountType.setInitialBalance(new Points(Long.parseLong(request.getInitialBalance())));
+            accountType.setBalance(new Points(Long.parseLong(request.getBalance())));
         } else if  (request.getCurrencyType().equalsIgnoreCase("virtualDollar")) {
-            accountType.setInitialBalance(new VirtualDollar(Double.parseDouble(request.getInitialBalance())));
+            accountType.setBalance(new VirtualDollar(Double.parseDouble(request.getBalance())));
         }
         accountTypeRepository.save(accountType);
         request.setId(accountType.getId());

@@ -14,7 +14,7 @@ public class AccountTypePayload implements Serializable {
 
     private String description;
 
-    private String initialBalance;
+    private String balance;
 
     private String currencyType;
 }

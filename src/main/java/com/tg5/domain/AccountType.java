@@ -24,5 +24,5 @@ public class AccountType implements Serializable {
     private String description;
 
     @Embedded
-    private AccountCurrency initialBalance;
+    private AccountCurrency balance;
 }
