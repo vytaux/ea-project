@@ -1,5 +1,4 @@
 services:
-
   postgres:
     image: postgres
     environment:
@@ -7,4 +6,15 @@ services:
       POSTGRES_PASSWORD: ebas
     ports:
       - "5432:5432"
+    restart: unless-stopped
+
+  activemq:
+    image: apache/activemq-artemis:latest
+    container_name: activemq
+    ports:
+      - "61616:61616"  # OpenWire protocol port
+      - "8161:8161"    # Web Console port
+    environment:
+      - ARTEMIS_USERNAME=artemis
+      - ARTEMIS_PASSWORD=artemis
     restart: unless-stopped
