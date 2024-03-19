@@ -1,36 +1,26 @@
 package com.tg5.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
 @Entity
 @Table(name = "roles")
-public class Role {
+public class Role implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
-    public Role() {
-    }
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToMany
+    private List<AccountType> defaultAccountTypes = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

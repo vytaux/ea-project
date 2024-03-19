@@ -30,7 +30,7 @@ public class Account implements Serializable {
     private Double balance;
 
     //Account have accountType
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private AccountType type;
 
     //One Member can have many Accounts
