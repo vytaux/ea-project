@@ -28,5 +28,5 @@ public class Record implements Serializable {
     @ManyToOne
     private Scanner scanner;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime scannedAt;
 }
