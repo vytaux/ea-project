@@ -1,0 +1,38 @@
+GET http://localhost:8080/v1/badge-system/account-types
+
+###
+POST http://localhost:8080/v1/badge-system/account-types
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "lunch account",
+  "description": "lunch account described",
+  "initialBalance": 1000,
+  "currencyType": "points"
+}
+
+###
+POST http://localhost:8080/v1/badge-system/account-types
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "gym account",
+  "description": "gym account described",
+  "initialBalance": 500,
+  "currencyType": "VirtualDollar"
+}
+
+###
+
+POST http://localhost:8080/v1/badge-system/account-types
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "Dinner account",
+  "description": "Dinner account described",
+  "initialBalance": 500,
+  "currencyType": "Points"
+}

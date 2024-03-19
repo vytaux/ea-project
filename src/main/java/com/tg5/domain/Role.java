@@ -20,7 +20,7 @@ public class Role implements Serializable {
     private String name;
 
 
-//    @ManyToMany
-//    private List<AccountType> defaultAccountTypes = new ArrayList<>();
+    @ManyToMany
+    private List<AccountType> defaultAccountTypes = new ArrayList<>();
 
 }

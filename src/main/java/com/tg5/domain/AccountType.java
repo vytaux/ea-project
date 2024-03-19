@@ -6,9 +6,23 @@
 
 package com.tg5.domain;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.io.Serializable;
+
 // Enum to hold AccountType information
-public enum AccountType {
-    DINING_POINTS,
-    VIRTUAL_DOLLAR,
-    ATTENDANCE_POINTS
+@Data
+@Entity
+@Table(name = "account_types")
+public class AccountType implements Serializable {
+    @Id
+    @GeneratedValue
+    private long id;
+    private String name;
+    @Lob
+    private String description;
+
+    @Embedded
+    private AccountCurrency initialBalance;
 }
