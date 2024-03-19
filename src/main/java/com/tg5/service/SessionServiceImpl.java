@@ -14,15 +14,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SessionServiceImpln extends BaseReadWriteServiceImpl<SessionPayload, Session, Long> implements SessionService {
-}
-//    @Autowired
-//    SessionRepository sessionRepository;
-//    @Override
-//    public List<Session> getAllSessionsByEventId(Long eventId) {
-//        return sessionRepository.getAllSessionsByEventId(eventId);
-    //}
+public class SessionServiceImpl extends BaseReadWriteServiceImpl<SessionPayload, Session, Long> implements SessionService {
 
+    @Autowired
+    SessionRepository sessionRepository;
+
+   public List<Session> getAllSessionsByEvent(Event event) {
+        return sessionRepository.findByEvent(event);
+    }
+  }
 
 //public class SessionServiceImpl implements SessionService {
 //
