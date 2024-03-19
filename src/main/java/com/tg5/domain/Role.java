@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Table(name = "roles")
 public class Role implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id

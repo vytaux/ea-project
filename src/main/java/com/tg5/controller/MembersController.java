@@ -18,23 +18,6 @@ import java.util.List;
 @RequestMapping("/members")
 public class MembersController extends BaseReadWriteController<MemberPayload, Member, Long>{
 
-//    private final MemberRepository memberRepository;
-//
-//    public MembersController(MemberRepository memberRepository) {
-//        this.memberRepository = memberRepository;
-//    }
-
-    // TODO members CRUD --- done
-
-    // TODO [advanced] member roles CRUD /members/{memberId}/roles
-//    @GetMapping("/{memberId}/roles")
-//    public List<Role> getMemberRoles(@PathVariable Long memberId) {
-//        Member byId = memberRepository.findById(memberId)
-//                .orElseThrow();
-//
-//        return byId.getRoles();
-//    }
-
     // TODO [advanced] calculate attendance GET /members/{memberId}/attendance
 
     // TODO [advanced] calculate attendance single member, single event
