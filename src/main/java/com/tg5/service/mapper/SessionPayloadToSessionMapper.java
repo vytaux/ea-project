@@ -14,20 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SessionPayloadToSessionMapper extends BaseMapper<SessionPayload, Session>{
 
-	private final EventRepository eventRepository;
-
-	public SessionPayloadToSessionMapper(EventRepository eventRepository, MapperFactory mapperFactory) {
+	public SessionPayloadToSessionMapper(MapperFactory mapperFactory) {
 		super(mapperFactory, SessionPayload.class, Session.class);
-        this.eventRepository = eventRepository;
     }
-
-	@Override
-	protected Session customMapping(SessionPayload source, Session target) {
-		Event event = eventRepository.findById(source.getEvent().getId())
-				.orElseThrow(() -> new ResourceNotFoundException("Event not found"));
-
-		target.setEvent(event);
-
-		return target;
-	}
 }
