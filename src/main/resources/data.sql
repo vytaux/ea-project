@@ -1,6 +1,15 @@
--- INSERT INTO members (id, email) VALUES (1, 'somename');
+ INSERT INTO members (id, firstname) VALUES (1, 'somename');
+ INSERT INTO members (id, firstname) VALUES (2, 'adonay');
 
--- INSERT INTO roles (id, name) VALUES (1, 'ROLE_USER');
+INSERT INTO events (id)    VALUES (1);
 
--- INSERT INTO members_roles (member_id, role_id) VALUES (1, 1);
-SELECT 1;
+INSERT INTO events_members(member_id,event_id)  VALUES (1,1);
+ INSERT INTO events_members(member_id,event_id)  VALUES (2,1);
+
+INSERT INTO sessions (id, event_id) VALUES (1,1);
+ INSERT INTO sessions (id, event_id) VALUES (2,1);
+
+INSERT INTO records (session_id,member_id)  VALUES (1,1);
+ INSERT INTO records (session_id,member_id)  VALUES (1,2);
+ INSERT INTO records (session_id,member_id)  VALUES (2,2);
+
