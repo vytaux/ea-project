@@ -49,3 +49,35 @@ Content-Type: application/json
   },
   "members": [{"id": 2}]
 }
+
+###
+POST http://localhost:8080/v1/badge-system/events
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "Machine Learning",
+  "location": {
+    "id": 1
+  },
+  "accountType": {
+    "id": 1
+  },
+  "members": [{"id": 1}]
+}
+
+###
+POST http://localhost:8080/v1/badge-system/events
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "Gym",
+  "location": {
+    "id": 1
+  },
+  "accountType": {
+    "id": 2
+  },
+  "members": [{"id": 1}]
+}
