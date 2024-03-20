@@ -11,4 +11,11 @@ public class AccountTypeToAccountTypePayload extends BaseMapper<AccountType, Acc
     protected AccountTypeToAccountTypePayload(MapperFactory mapperFactory) {
         super(mapperFactory, AccountType.class, AccountTypePayload.class);
     }
+
+    @Override
+    protected AccountTypePayload customMapping(AccountType accountType, AccountTypePayload accountTypePayload) {
+        accountTypePayload.setCurrencyType(accountType.getBalance().getMoneyType().toString());
+        accountTypePayload.setBalance(String.valueOf(accountType.getBalance().valueOf()));
+       return accountTypePayload;
+    }
 }

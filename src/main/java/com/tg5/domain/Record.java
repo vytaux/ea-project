@@ -24,6 +24,5 @@ public class Record implements Serializable {
     @ManyToOne
     private Member member;
     @ManyToOne
-    @JoinColumn(name = "session_id")
     private Session session;
 }
