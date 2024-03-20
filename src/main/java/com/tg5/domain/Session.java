@@ -2,6 +2,7 @@ package com.tg5.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -26,9 +27,6 @@ public class Session implements Serializable {
 
     @ManyToOne
     private Event event;
-
-    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
-    private List<Record> records;
 
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
