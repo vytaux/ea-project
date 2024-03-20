@@ -93,6 +93,6 @@ Content-Type: application/json
 }
 ###
 
-DELETE http://localhost:8080/v1/badge-system/members/4/roles/1
-Authorization: Basic user 123
-Content-Type: application/json
+#DELETE http://localhost:8080/v1/badge-system/members/4/roles/1
+#Authorization: Basic user 123
+#Content-Type: application/json

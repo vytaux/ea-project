@@ -1,8 +1,12 @@
 package com.tg5.controller;
 
+import com.tg5.domain.Event;
 import com.tg5.domain.Member;
 import com.tg5.domain.Role;
+import com.tg5.service.AttendanceCalculator;
+import com.tg5.service.EventService;
 import com.tg5.service.MemberService;
+import com.tg5.service.contract.EventPayload;
 import com.tg5.service.contract.MemberPayload;
 import com.tg5.service.contract.RolePayload;
 import edu.miu.common.controller.BaseReadWriteController;
@@ -15,11 +19,18 @@ import org.springframework.web.bind.annotation.*;
 public class MembersController extends BaseReadWriteController<MemberPayload, Member, Long> {
 
 
+
     private  MemberService memberService;
 
+    private AttendanceCalculator attendanceCalculator;
     @Autowired
     public void setMemberService(MemberService memberService) {
         this.memberService = memberService;
+    }
+
+    @Autowired
+    public void setAttendanceCalculator(AttendanceCalculator attendanceCalculator) {
+        this.attendanceCalculator = attendanceCalculator;
     }
 //
 //    // TODO members CRUD
@@ -58,5 +69,10 @@ public class MembersController extends BaseReadWriteController<MemberPayload, Me
 
     // TODO [advanced] calculate attendance single member, single event
     //      GET /members/{memberId}/events/{eventId}/attendance
+    @GetMapping("/{memberId}/events/{eventId}/attendance")
+    public ResponseEntity<?> calculateAttendancePerMemberForEvent(
+            @PathVariable Long memberId, @PathVariable Long eventId) {
+        return ResponseEntity.ok(attendanceCalculator.calculateAttendancePerMemberForEvent(memberId,eventId));
+    }
 
 }
