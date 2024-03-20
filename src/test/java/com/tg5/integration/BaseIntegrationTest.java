@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 public class BaseIntegrationTest {
 
     @BeforeAll
-    public static void setup() {
+    public static void beforeAll() {
         RestAssured.baseURI = "http://localhost:8080/v1/badge-system";
     }
 }

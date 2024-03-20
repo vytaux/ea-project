@@ -30,4 +30,6 @@ public class EventPayload implements Serializable {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime endDateTime;
+
+    private List<MemberPayload> members = new ArrayList<>();
 }
