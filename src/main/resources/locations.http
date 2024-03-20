@@ -1,11 +1,21 @@
-GET http://localhost:8080/badge-system/locations
+GET http://localhost:8080/v1/badge-system/locations
 
 ###
-POST http://localhost:8080/badge-system/locations
+POST http://localhost:8080/v1/badge-system/locations
 Authorization: Basic user 123
 Content-Type: application/json
 
 {
   "name": "agriro",
   "locationType": "DINING_HALL"
+}
+####
+
+POST http://localhost:8080/v1/badge-system/locations
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+"name": "Dybr HALL",
+"locationType": "CLASSROOM"
 }

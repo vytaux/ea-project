@@ -15,7 +15,7 @@ public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -23,10 +23,10 @@ public class Event implements Serializable {
     @OneToMany(mappedBy = "event")
     private List<Session> sessions = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     AccountType accountType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     Location location;
 
     @ManyToMany

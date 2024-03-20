@@ -22,7 +22,9 @@ public class RoleServiceImpl extends BaseReadWriteServiceImpl<RolePayload, Role,
 
     @Override
     public RolePayload create(RolePayload request) {
-        List<AccountType> types =  accountTypeRepository.findAccountTypesByIdIn(request.getDefaultAccountTypes());
+        List<AccountType> types =  accountTypeRepository.findAccountTypesByIdIn(request.getDefaultAccountTypes()
+                .stream().map(accountType -> accountType.getId())
+                .toList());
         Role role = new Role();
         role.setName(request.getName());
         role.setDefaultAccountTypes(types);

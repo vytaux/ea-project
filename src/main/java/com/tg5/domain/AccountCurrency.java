@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 public  class AccountCurrency {
 
-    AccountCurrency(BigDecimal balance, MoneyType moneyType) {
+    public AccountCurrency(BigDecimal balance, MoneyType moneyType) {
         this.balance = balance;
         this.moneyType = moneyType;
     }

@@ -21,7 +21,7 @@ public class Role implements Serializable {
 
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch =FetchType.EAGER, cascade = CascadeType.ALL)
     private List<AccountType> defaultAccountTypes = new ArrayList<>();
 
 }

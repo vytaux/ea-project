@@ -1,5 +1,7 @@
 package com.tg5.service.contract;
 
+import com.tg5.domain.AccountType;
+import com.tg5.domain.Location;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,4 +14,8 @@ public class EventPayload implements Serializable {
     private Long id;
 
     private String name;
+
+    private AccountType accountType;
+
+    private Location location;
 }
