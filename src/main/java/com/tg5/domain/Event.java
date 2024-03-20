@@ -23,6 +23,9 @@ public class Event implements Serializable {
     @OneToMany(mappedBy = "event")
     private List<Session> sessions = new ArrayList<>();
 
+    @ManyToOne
+    private AccountType accountType;
+
     @ManyToMany
     @JoinTable(
             name = "events_members",
