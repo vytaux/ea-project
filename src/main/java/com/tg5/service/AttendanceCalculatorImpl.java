@@ -10,6 +10,7 @@ import com.tg5.repository.RecordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,5 +47,11 @@ public class AttendanceCalculatorImpl implements AttendanceCalculator {
             }
         }
         return attendances;
+    }
+
+    @Override
+    public Map<Long, Double> calculateAttendanceWithInterval(Long accountId, String startDate, String endDate) {
+
+        return null;
     }
 }
