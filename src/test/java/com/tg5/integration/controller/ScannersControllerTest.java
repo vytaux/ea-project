@@ -16,13 +16,13 @@ public class ScannersControllerTest extends BaseTest {
     public void testCreateScanner() {
         Response response = given()
                 .contentType(ContentType.JSON)
-                .body("{\"scannerCode\": \"SC123\", \"name\": \"ScannerName\"}")                .when()
+                .body("{\"scannerCode\": \"SC123\", \"name\": \"ScannerName\"}").when()
                 .post("/scanners")
                 .then()
                 .statusCode(200)
                 .extract()
                 .response();
-       createdScannerId = response.path("id");
+        createdScannerId = response.path("id");
     }
 
     @Test
@@ -41,17 +41,13 @@ public class ScannersControllerTest extends BaseTest {
     @Test
     @Order(3)
     public void testUpdateScanner() {
-        if (createdScannerId != null) {
-            given()
-                    .contentType(ContentType.JSON)
-                    .body("{\"id\":\""+createdScannerId+"\",\"scannerCode\": \"updatedScannerCode\", \"name\": \"updatedScannerName\"}") // adjust the properties accordingly
-                    .when()
-                    .put("/scanners/"+createdScannerId)
-                    .then()
-                    .statusCode(200);
-        } else {
-            throw new AssertionError("Update Test failed because condition is false!" + createdScannerId);
-        }
+        given()
+                .contentType(ContentType.JSON)
+                .body("{\"id\":\"" + createdScannerId + "\",\"scannerCode\": \"updatedScannerCode\", \"name\": \"updatedScannerName\"}") // adjust the properties accordingly
+                .when()
+                .put("/scanners/" + createdScannerId)
+                .then()
+                .statusCode(200);
     }
 
 
