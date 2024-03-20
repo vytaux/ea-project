@@ -1,16 +1,54 @@
-GET http://localhost:8080/badge-system/members
+GET http://localhost:8080/v1/badge-system/members
 Authorization: Basic user 123
 
 ###
-
-GET http://localhost:8080/badge-system/members/1
-Authorization: Basic user 123
-
-###
-POST http://localhost:8080/badge-system/members
+POST http://localhost:8080/v1/badge-system/members
 Authorization: Basic user 123
 Content-Type: application/json
 
 {
+  "firstname": "Jean Claude",
+  "lastname": "GOMBANIRO",
+  "email": "jgombaniro@miu.edu"
+}
 
+###
+POST http://localhost:8080/v1/badge-system/members
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "firstname": "Joe",
+  "lastname": "Doe",
+  "email": "joe@miu.edu"
+}
+
+###
+POST http://localhost:8080/v1/badge-system/members
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "firstname": "Jilly",
+  "lastname": "Layman",
+  "email": "layman@miu.edu"
+}
+
+###
+
+GET http://localhost:8080/v1/badge-system/members/1
+Authorization: Basic user 123
+
+###
+
+###
+PUT http://localhost:8080/v1/badge-system/members/1
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "id": 1,
+  "firstname": "Jean Claude",
+  "lastname": "Gombaniro",
+  "email": "jgombaniro@miu.edu"
 }
