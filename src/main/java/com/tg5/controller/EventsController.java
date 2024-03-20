@@ -39,19 +39,19 @@ public class EventsController extends BaseReadWriteController<EventPayload, Even
 //        return
 //    }
 
-    @GetMapping(path="/{eventId}/attendance")
-       public ResponseEntity<?> getAttendanceByEventId(@PathVariable(value = "eventId") Long eventId){
-        Map<String, Double> members = new HashMap<>();
-        // get event by id
-                Event event = eventRepository.findById(eventId).orElseThrow();
-                     int total = event.getSessions().size();
-                 for(Member mem : event.getMembers()){
-                     int memberSession = recordRepository.countByEventAndMember(mem,event);
-                         Double calculatedPercentage = ((double) memberSession/total)*100;
-                     members.put(mem.getFirstname(), calculatedPercentage);
-                 }
-        return ResponseEntity.ok(members);
-     }
+//    @GetMapping(path="/{eventId}/attendance")
+//       public ResponseEntity<?> getAttendanceByEventId(@PathVariable(value = "eventId") Long eventId){
+//        Map<String, Double> members = new HashMap<>();
+//        // get event by id
+//                Event event = eventRepository.findById(eventId).orElseThrow();
+//                     int total = event.getSessions().size();
+//                 for(Member mem : event.getMembers()){
+//                     int memberSession = recordRepository.countByEventAndMember(mem,event);
+//                         Double calculatedPercentage = ((double) memberSession/total)*100;
+//                     members.put(mem.getFirstname(), calculatedPercentage);
+//                 }
+//        return ResponseEntity.ok(members);
+//     }
     // TODO events CRUD
 //    @GetMapping
 //    public List<Event> getEvents() {

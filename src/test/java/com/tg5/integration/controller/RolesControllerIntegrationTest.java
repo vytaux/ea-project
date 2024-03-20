@@ -1,13 +1,13 @@
 package com.tg5.integration.controller;
 
 import com.tg5.domain.Role;
-import com.tg5.integration.BaseTest;
+import com.tg5.integration.BaseIntegrationTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class RoleControllerTest extends BaseTest {
+public class RolesControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void testGet() {

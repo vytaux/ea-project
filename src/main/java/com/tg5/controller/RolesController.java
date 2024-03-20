@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/roles")
-public class RoleController extends BaseReadWriteController<RolePayload, Role, Long> {
+public class RolesController extends BaseReadWriteController<RolePayload, Role, Long> {
 }

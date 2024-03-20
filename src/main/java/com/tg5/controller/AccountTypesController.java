@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/account-types")
-public class AccountTypeController extends BaseReadWriteController<AccountTypePayload, AccountType, Long> {
+public class AccountTypesController extends BaseReadWriteController<AccountTypePayload, AccountType, Long> {
 }
