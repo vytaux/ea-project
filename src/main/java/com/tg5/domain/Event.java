@@ -20,6 +20,14 @@ public class Event implements Serializable {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "event")
     private List<Session> sessions = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "events_members",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+    private List<Member> members = new ArrayList<>();
 }

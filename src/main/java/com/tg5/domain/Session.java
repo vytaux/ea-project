@@ -19,66 +19,18 @@ public class Session implements Serializable {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
     private Event event;
 
 
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
+    private List<Record> records;
 
-//    @OneToMany(mappedBy = "attendedSessions")
-//    private Set<Member> attendees;
     public Session() {
     }
 
-    private LocalDate dayOfWeek;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
 
-    public LocalDate getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public void startTime(LocalDateTime startTime) {
-
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getEndTime() {
-
-        return endTime;
-    }
-
-
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-
-//    public Set<Member> getAttendees() {
-//        return attendees;
-//    }
-//
-//    public void setAttendees(Set<Member> attendees) {
-//        this.attendees = attendees;
-//    }
-
-    public void setDayOfWeek(LocalDate dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 
     public Long getId() {
         return id;
@@ -95,4 +47,55 @@ public class Session implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
+    }
+
+
+
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    public void setEndTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
 }
+
+
+
+
+
+//    public Set<Member> getAttendees() {
+//        return attendees;
+//    }
+//
+//    public void setAttendees(Set<Member> attendees) {
+//        this.attendees = attendees;
+//    }
+
+
+
+
