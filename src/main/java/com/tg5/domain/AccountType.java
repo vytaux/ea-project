@@ -20,7 +20,8 @@ public class AccountType implements Serializable {
     @GeneratedValue
     private long id;
     private String name;
-    @Lob
+
+    @Column(length = 600)
     private String description;
 
     @Embedded

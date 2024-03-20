@@ -1,20 +1,26 @@
 package com.tg5.controller;
 
 import com.tg5.domain.Member;
+import com.tg5.domain.Role;
+import com.tg5.service.MemberService;
 import com.tg5.service.contract.MemberPayload;
+import com.tg5.service.contract.RolePayload;
 import edu.miu.common.controller.BaseReadWriteController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/members")
 public class MembersController extends BaseReadWriteController<MemberPayload, Member, Long> {
 
-//    private final MemberRepository memberRepository;
-//
-//    public MembersController(MemberRepository memberRepository) {
-//        this.memberRepository = memberRepository;
-//    }
+
+    private  MemberService memberService;
+
+    @Autowired
+    public void setMemberService(MemberService memberService) {
+        this.memberService = memberService;
+    }
 //
 //    // TODO members CRUD
 //    @GetMapping
@@ -23,13 +29,30 @@ public class MembersController extends BaseReadWriteController<MemberPayload, Me
 //    }
 
     // TODO [advanced] member roles CRUD /members/{memberId}/roles
-//    @GetMapping("/{memberId}/roles")
-//    public List<Role> getMemberRoles(@PathVariable Long memberId) {
-//        Member byId = memberRepository.findById(memberId)
-//                .orElseThrow();
-//
-//        return byId.getRoles();
-//    }
+   @GetMapping("/{memberId}/roles")
+    public ResponseEntity<?> getMemberRoles(@PathVariable Long memberId) {
+        MemberPayload memberPayload = memberService.findById(memberId);
+        return ResponseEntity.ok(memberPayload.getRoles());
+    }
+
+    @PostMapping("/{memberId}/roles")
+    public ResponseEntity<?> addRole( @PathVariable Long memberId, @RequestBody RolePayload rolePayload) {
+        MemberPayload memberPayload = memberService.findById(memberId);
+        Role newRole = new Role();
+        newRole.setId(rolePayload.getId());
+        memberPayload.addRole(newRole);
+        memberService.update(memberId, memberPayload);
+        return ResponseEntity.ok(memberPayload);
+
+    }
+
+    @DeleteMapping("/{memberId}/roles/{roleId}")
+    public ResponseEntity<?> deleteRole( @PathVariable Long memberId, @PathVariable Integer roleId) {
+        MemberPayload memberPayload = memberService.findById(memberId);
+        memberPayload.removeRole(roleId);
+        memberService.update(memberId, memberPayload);
+        return ResponseEntity.ok(memberPayload);
+    }
 
     // TODO [advanced] calculate attendance GET /members/{memberId}/attendance
 

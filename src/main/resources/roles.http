@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "student",
-  "defaultAccountTypes" : [1, 2, 3]
+  "defaultAccountTypes" : [{"id": 1}, {"id": 2}, {"id": 3}]
 }
 
 ###
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   "name": "staff",
-  "defaultAccountTypes" : [2, 3]
+  "defaultAccountTypes" : [{"id": 2}, {"id": 3}]
 }
 
 ###
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 {
   "name": "faculty",
-  "defaultAccountTypes" : [1, 2]
+  "defaultAccountTypes" : [{"id": 1}, {"id": 2}]
 }
 
 ###
