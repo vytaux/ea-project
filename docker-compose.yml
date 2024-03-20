@@ -18,4 +18,5 @@ services:
       - ARTEMIS_USERNAME=artemis
       - ARTEMIS_PASSWORD=artemis
     restart: unless-stopped
+  #Not adding web app now
 
