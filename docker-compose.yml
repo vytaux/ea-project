@@ -18,3 +18,4 @@ services:
       - ARTEMIS_USERNAME=artemis
       - ARTEMIS_PASSWORD=artemis
     restart: unless-stopped
+
