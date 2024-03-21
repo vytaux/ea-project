@@ -3,6 +3,7 @@ package com.tg5.service.contract;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tg5.domain.AccountType;
 import com.tg5.domain.Location;
+import com.tg5.domain.Member;
 import lombok.Data;
 
 import java.io.Serial;

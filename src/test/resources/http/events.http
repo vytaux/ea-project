@@ -4,32 +4,80 @@ Authorization: Basic user 123
 
 ###
 
-POST http://localhost:8080/v1/badge-system/events
-Authorization: Basic user 123
-Content-Type: application/json
-
-{
-  "name": "EA",
-  "location": {
-    "id": 2
-  },
-  "accountType": {
-    "id": 2
-  }
-}
+#POST http://localhost:8080/v1/badge-system/events
+#Authorization: Basic user 123
+#Content-Type: application/json
+#
+#{
+#  "name": "EA",
+#  "location": {
+#    "id": 2
+#  },
+#  "accountType": {
+#    "id": 2
+#  }
+#}
 
 ###
 
+#POST http://localhost:8080/v1/badge-system/events
+#Authorization: Basic user 123
+#Content-Type: application/json
+#
+#{
+#  "name": "SA",
+#  "location": {
+#    "id": 1
+#  },
+#  "accountType": {
+#    "id": 3
+#  }
+#}
+
+###
 POST http://localhost:8080/v1/badge-system/events
 Authorization: Basic user 123
 Content-Type: application/json
 
 {
-  "name": "SA",
+  "name": "Big Data",
   "location": {
     "id": 1
   },
   "accountType": {
     "id": 3
-  }
+  },
+  "members": [{"id": 1}, {"id": 2}]
 }
+
+###
+POST http://localhost:8080/v1/badge-system/events
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "Machine Learning",
+  "location": {
+    "id": 1
+  },
+  "accountType": {
+    "id": 1
+  },
+  "members": [{"id": 1}, {"id": 2}]
+}
+
+###
+#POST http://localhost:8080/v1/badge-system/events
+#Authorization: Basic user 123
+#Content-Type: application/json
+#
+#{
+#  "name": "Gym",
+#  "location": {
+#    "id": 1
+#  },
+#  "accountType": {
+#    "id": 2
+#  },
+#  "members": [{"id": 2}]
+#}
