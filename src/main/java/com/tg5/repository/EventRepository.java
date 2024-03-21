@@ -26,12 +26,6 @@ public interface EventRepository extends BaseRepository<Event, Long> {
             @QueryParam("to") LocalDateTime to
     );
 
-    @Query("SELECT COUNT(r) FROM Record r " +
-            "WHERE r.session.event = :event " +
-            "   AND r.member = :member"
-    )
-    int getCountByEventAndMember(Event event, Member member);
-
     Event findEventByAccountType(AccountType accountType);
 
     @Query("select e from  Event e inner join e.members s where s.id = :memberId")
