@@ -8,8 +8,10 @@ Content-Type: application/json
 {
   "name": "lunch account",
   "description": "lunch account described",
-  "balance": 1000,
-  "currencyType": "points"
+  "balance": {
+    "balance": 1000,
+    "moneyType": "Points"
+  }
 }
 
 ###
@@ -20,8 +22,10 @@ Content-Type: application/json
 {
   "name": "gym account",
   "description": "gym account described",
-  "balance": 500,
-  "currencyType": "VirtualDollar"
+  "balance": {
+    "balance": 500,
+    "moneyType": "VirtualDollar"
+  }
 }
 
 ###
@@ -33,6 +37,8 @@ Content-Type: application/json
 {
   "name": "Dinner account",
   "description": "Dinner account described",
-  "balance": 500,
-  "currencyType": "Points"
+  "balance": {
+    "balance": 500,
+    "moneyType": "Points"
+  }
 }

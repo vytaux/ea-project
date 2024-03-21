@@ -1,5 +1,6 @@
 package com.tg5.service.contract;
 
+import com.tg5.domain.AccountCurrency;
 import lombok.Data;
 
 import java.io.Serial;
@@ -17,7 +18,5 @@ public class AccountTypePayload implements Serializable {
 
     private String description;
 
-    private String balance;
-
-    private String currencyType;
+    private AccountCurrency balance;
 }
