@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/scanners/{scannerCode}/record")
+@RequestMapping("/scanners/{scannerCode}/records")
 @RequiredArgsConstructor
 public class RecordsController {
     private final RecordServiceImpl recordService;
@@ -25,7 +25,7 @@ public class RecordsController {
     public ResponseEntity<?> addRecord(@PathVariable("scannerCode") String scannerCode,
                                        @RequestBody Record record) {
         Record record1 = recordService.addRecord(scannerCode, record);
-        return new ResponseEntity<>(record1, HttpStatus.CREATED);
+        return new ResponseEntity<>(record1, HttpStatus.OK);
     }
 
     @PutMapping("/{recordId}")
