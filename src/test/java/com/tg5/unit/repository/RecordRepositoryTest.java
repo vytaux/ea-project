@@ -23,6 +23,7 @@ public class RecordRepositoryTest {
 
     @Test
     public void testGetCountByEventAndMember() {
+
         Member member = new Member();
         Event event = new Event();
 
@@ -39,7 +40,11 @@ public class RecordRepositoryTest {
         entityManager.persist(record);
         entityManager.flush();
 
-        int count = recordRepository.getCountByEventAndMember(event, member);
+        
+
+        // Call the countByEventAndMember method with the same Event and Member
+        int count = recordRepository.countByEventAndMember(member, event);
+
 
         assertEquals(1, count);
     }

@@ -12,14 +12,11 @@ import java.util.Optional;
 
 
 public interface RecordRepository extends BaseRepository<Record, Long> {
+
     @Query("SELECT r FROM Record r " +
             "JOIN FETCH r.scanner sc " +
             "WHERE sc.scannerCode = :scannerCode")
     List<Record> findAllByScannerCode(@Param("scannerCode") String scannerCode);
-
-    @Query("SELECT Count(r) from Record r where r.session.event=:event and r.member=:member")
-    int countByEventAndMember(Member member, Event event);
-    //int countBySession(Session session);
 
     @Query("SELECT COUNT(r) FROM Record r " +
             "WHERE r.session.event = :event " +
@@ -29,4 +26,11 @@ public interface RecordRepository extends BaseRepository<Record, Long> {
 
     @Query("SELECT r FROM Record r WHERE r.id = :recordId AND r.scanner.scannerCode = :scannerCode")
     Optional<Record> findByIdAndScanner_ScannerCode(@Param("recordId") Long recordId, @Param("scannerCode") String scannerCode);
+
+
+    @Query("SELECT COUNT(r) FROM Record r " +
+            "WHERE r.session.event=:event " +
+            "AND r.member=:member")
+    int countByEventAndMember(Member member, Event event);
+
 }

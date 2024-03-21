@@ -33,7 +33,7 @@ public class Account implements Serializable {
 
     //Account have accountType
     @ManyToOne
-    private AccountType type;
+    private AccountType accountType;
 
     //One Member can have many Accounts
     @ManyToOne

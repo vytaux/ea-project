@@ -8,7 +8,6 @@ import com.tg5.service.reports.AttendanceByAccountTypeByDateFromToReport;
 import com.tg5.repository.EventRepository;
 import com.tg5.repository.RecordRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,7 +15,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -84,7 +82,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         for (Event event : events) {
             int eventSessionsCount = event.getSessions().size();
             for (Member member : event.getMembers()) {
-                int userSessionsCount = recordRepository.getCountByEventAndMember(event, member);
+                int userSessionsCount = recordRepository.countByEventAndMember(member, event);
                 response.getAttendancePercent().put(
                         member.getFullName(),
                         ((double) userSessionsCount / eventSessionsCount) * 100
