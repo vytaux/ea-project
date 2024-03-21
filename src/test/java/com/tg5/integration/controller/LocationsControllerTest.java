@@ -27,9 +27,9 @@ public class LocationsControllerTest extends BaseIntegrationTest {
     public void testUpdateLocation() {
         // Sample data for creating and updating a location
         String initialName = "ARGIRO ROCKS!";
-        String initialType = "DINING_HALL"; // Replace with valid enum value from LocationType
+        String initialType = "DINING_HALL";
         String updatedName = "ARGIRO!!";
-        String updatedType = "DINING_HALL"; // Replace with valid enum value from LocationType
+        String updatedType = "DINING_HALL";
         Location location = new Location();
         location.setName(initialName);
         location.setLocationType(LocationType.valueOf(initialType));
@@ -47,7 +47,7 @@ public class LocationsControllerTest extends BaseIntegrationTest {
 
         Integer newLocationId = response.path("id"); // Extract the created location ID
 
-        // Ensure a location was created before attempting to update
+
         if (newLocationId != null) {
             // Update the location
             location.setName(updatedName);
@@ -76,10 +76,9 @@ public class LocationsControllerTest extends BaseIntegrationTest {
 
     @Test
     public void deleteLocationById() {
-        // Assuming you have a location with ID 1 in your system
+
         int locationIdToDelete = 5;
 
-        // Optionally, verify the location exists before attempting to delete
         given()
                 .log().all()
                 .when()
@@ -89,7 +88,7 @@ public class LocationsControllerTest extends BaseIntegrationTest {
                 .contentType(ContentType.JSON)
                 .statusCode(200);
 
-        // Now, delete the location
+
         given()
                 .log().all()
                 .when()
@@ -98,7 +97,7 @@ public class LocationsControllerTest extends BaseIntegrationTest {
                 .log().body()
                 .statusCode(200); // Adjust the status code as per your API's response for a successful delete
 
-        // Optionally, verify the location has been deleted
+
         given()
                 .log().all()
                 .when()
@@ -128,13 +127,11 @@ public class LocationsControllerTest extends BaseIntegrationTest {
                 .extract()
                 .response();
 
-        // Extract the created location ID as Integer
+
         Integer createdLocationId = response.path("id");
         assertNotNull("Location ID should not be null", String.valueOf(createdLocationId));
 
-        // Optional: additional validation steps can be added here, such as verifying the content of the response
 
-        // Optional cleanup: delete the created location
         given()
                 .when()
                 .delete("/locations/" + createdLocationId)

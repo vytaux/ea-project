@@ -14,13 +14,13 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
-                // TODO disable for now
-//                .authorizeHttpRequests((requests) -> requests
-//                        .anyRequest().authenticated()
-//                )
-                .oauth2Login(Customizer.withDefaults());
+//        http
+////                .csrf(AbstractHttpConfigurer::disable)
+////                 TODO disable for now
+////                .authorizeHttpRequests((requests) -> requests
+////                        .anyRequest().authenticated()
+////                )
+////                .oauth2Login(Customizer.withDefaults());
 
         return http.build();
     }

@@ -1,6 +1,7 @@
 package com.tg5.integration.controller;
 
 import com.tg5.domain.Member;
+import com.tg5.domain.Role;
 import com.tg5.integration.BaseIntegrationTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -90,4 +91,60 @@ public class MembersControllerTest extends BaseIntegrationTest {
                 .body("lastname", equalTo("layman"))
                 .body("email", equalTo("newjoe@miu.edu"));
     }
+
+    @Test
+    public void testGetMembersRoles() {
+
+        Long memberId = 1L;
+
+        given()
+                .when()
+                .get("/members/1/roles")
+                .then()
+                .statusCode(HttpStatus.OK.value())
+                .contentType(ContentType.JSON);
+    }
+
+    @Test
+    public void testAddRoleToMember() {
+        Long memberId = 1L;
+        Role newRole = new Role();
+        newRole.setName("ROLE_USER");
+
+        Response response = given()
+                .contentType(ContentType.JSON)
+                .body(newRole)
+                .when()
+                .post("/members/" + memberId + "/roles")
+                .thenReturn();
+
+        int statusCode = response.getStatusCode();
+        System.out.println("Response Status Code: " + statusCode);
+        System.out.println("Response Body: " + response.getBody().asString());
+    }
+
+    @Test
+    public void testDeleteRoleFromMember() {
+
+        Long memberId = 1L;
+        Long roleId = 2L;
+
+        // Perform DELETE request
+        given()
+                .when()
+                .delete("/members/{memberId}/roles/{roleId}", memberId, roleId)
+                .then()
+                .statusCode(HttpStatus.OK.value());
+
+
+    }
+
 }
+
+
+
+
+
+
+
+
