@@ -9,6 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/locations")
 public class LocationsController extends BaseReadWriteController<LocationPayload, Location, Long> {
-
 }
 

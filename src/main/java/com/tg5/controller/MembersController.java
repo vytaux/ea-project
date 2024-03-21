@@ -2,33 +2,21 @@ package com.tg5.controller;
 
 import com.tg5.domain.Member;
 import com.tg5.domain.Role;
-import com.tg5.service.AttendanceCalculator;
 import com.tg5.service.MemberService;
 import com.tg5.service.contract.MemberPayload;
 import com.tg5.service.contract.RolePayload;
 import edu.miu.common.controller.BaseReadWriteController;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/members")
 public class MembersController extends BaseReadWriteController<MemberPayload, Member, Long> {
 
-
-    private MemberService memberService;
-
-    private AttendanceCalculator attendanceCalculator;
-
-    @Autowired
-    public void setMemberService(MemberService memberService) {
-        this.memberService = memberService;
-    }
-
-    @Autowired
-    public void setAttendanceCalculator(AttendanceCalculator attendanceCalculator) {
-        this.attendanceCalculator = attendanceCalculator;
-    }
+    private final MemberService memberService;
 
     // TODO [advanced] member roles CRUD /members/{memberId}/roles
     @GetMapping("/{memberId}/roles")
@@ -60,20 +48,4 @@ public class MembersController extends BaseReadWriteController<MemberPayload, Me
         memberService.update(memberId, memberPayload);
         return ResponseEntity.ok(memberPayload);
     }
-
-    // TODO [advanced] calculate attendance GET /members/{memberId}/attendance
-    @GetMapping("/{memberId}/attendance")
-    public ResponseEntity<?> calculateAttendancePerMemberForAllAccount(
-            @PathVariable Long memberId) {
-        return ResponseEntity.ok(attendanceCalculator.calculateAttendancePerMemberForAllAccount(memberId));
-    }
-
-    // TODO [advanced] calculate attendance single member, single event
-    //      GET /members/{memberId}/events/{eventId}/attendance
-    @GetMapping("/{memberId}/events/{eventId}/attendance")
-    public ResponseEntity<?> calculateAttendancePerMemberForEvent(
-            @PathVariable Long memberId, @PathVariable Long eventId) {
-        return ResponseEntity.ok(attendanceCalculator.calculateAttendancePerMemberForEvent(memberId, eventId));
-    }
-
 }
