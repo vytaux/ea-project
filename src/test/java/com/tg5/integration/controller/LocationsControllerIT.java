@@ -2,7 +2,7 @@ package com.tg5.integration.controller;
 
 import com.tg5.domain.Location;
 import com.tg5.domain.LocationType;
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class LocationsControllerTest extends BaseIntegrationTest {
+public class LocationsControllerIT extends BaseIT {
     @Test
     public void testGetAll() {
         given()

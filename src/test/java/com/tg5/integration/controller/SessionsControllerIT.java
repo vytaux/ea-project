@@ -1,6 +1,6 @@
 package com.tg5.integration.controller;
 
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class SessionsControllerIntegrationTest extends BaseIntegrationTest {
+public class SessionsControllerIT extends BaseIT {
 
     @Test
     public void test() {
@@ -96,3 +96,4 @@ public class SessionsControllerIntegrationTest extends BaseIntegrationTest {
                 .statusCode(200); // Expecting status code 200 for successful deletion
     }
 }
+

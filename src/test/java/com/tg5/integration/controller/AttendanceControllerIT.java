@@ -1,6 +1,6 @@
 package com.tg5.integration.controller;
 
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import com.tg5.service.contract.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -15,7 +15,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
+public class AttendanceControllerIT extends BaseIT {
 
     @BeforeEach
     public void setup() {

@@ -3,7 +3,7 @@ package com.tg5.integration;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 
-public class BaseIntegrationTest {
+public class BaseIT {
 
     @BeforeAll
     public static void beforeAll() {

@@ -1,6 +1,6 @@
 package com.tg5.integration.controller;
 
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import com.tg5.service.contract.EventPayload;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 
-public class EventsControllerIntegrationTest extends BaseIntegrationTest {
+public class EventsControllerIT extends BaseIT {
 
     @Test
     public void testFindAll() {

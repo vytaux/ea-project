@@ -1,6 +1,6 @@
 package com.tg5.integration.controller;
 
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.*;
 import static io.restassured.RestAssured.given;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class AccountsControllerIntegrationTest extends BaseIntegrationTest {
+public class AccountsControllerIT extends BaseIT {
     private static Integer createdAccountId;
 
     @Test
