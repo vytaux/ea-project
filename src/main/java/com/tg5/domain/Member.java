@@ -12,7 +12,7 @@ import java.util.List;
 public class Member implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstname;
@@ -21,7 +21,8 @@ public class Member implements Serializable {
 
     private String email;
 
-
+    @Column(unique = true)
+    private String barcode;
 
     @ManyToMany
     @JoinTable(
@@ -30,4 +31,8 @@ public class Member implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles = new ArrayList<>();
+
+    public String getFullName() {
+        return firstname + " " + lastname;
+    }
 }

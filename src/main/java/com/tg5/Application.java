@@ -1,7 +1,5 @@
 package com.tg5;
 
-
-
 import com.tg5.service.MessageConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +13,6 @@ public class Application {
 	@Autowired
 	private MessageConsumer messageConsumer;
 	public static void main(String[] args) {
-
 		SpringApplication.run(Application.class, args);
 	}
 }

@@ -1,0 +1,78 @@
+POST http://localhost:8080/v1/badge-system/events/1/sessions
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "session 1",
+  "startTime": "2024-03-01 10:00",
+  "endTime": "2024-03-01 12:00",
+  "member": {
+    "id": 1
+  },
+  "event": {
+    "id": 1
+  }
+}
+
+###
+POST http://localhost:8080/v1/badge-system/events/1/sessions
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "session 2",
+  "startTime": "2024-03-01 14:00",
+  "endTime": "2024-03-01 16:00",
+  "member": {
+    "id": 1
+  },
+  "event": {
+    "id": 1
+  }
+}
+
+###
+GET http://localhost:8080/v1/badge-system/events/1/sessions
+Authorization: Basic user 123
+
+###
+
+POST http://localhost:8080/v1/badge-system/events/2/sessions
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "session 1 ve",
+  "startTime": "2024-03-01 10:00",
+  "endTime": "2024-03-01 12:00",
+  "member": {
+    "id": 2
+  },
+  "event": {
+    "id": 2
+  }
+}
+
+###
+POST http://localhost:8080/v1/badge-system/events/2/sessions
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "session 2 ve",
+  "startTime": "2024-03-01 14:00",
+  "endTime": "2024-03-01 16:00",
+  "member": {
+    "id": 2
+  },
+  "event": {
+    "id": 2
+  }
+}
+
+###
+GET http://localhost:8080/v1/badge-system/events/2/sessions
+Authorization: Basic user 123
+
+
+

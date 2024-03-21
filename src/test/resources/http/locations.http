@@ -19,3 +19,22 @@ Content-Type: application/json
 "name": "Dybr HALL",
 "locationType": "CLASSROOM"
 }
+
+###
+PUT http://localhost:8080/v1/badge-system/locations/1
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "id": 1,
+"name": "ARGIRO ROCKS!",
+"locationType": "DINING_HALL"
+}
+
+###
+GET http://localhost:8080/v1/badge-system/locations/1
+Authorization: Basic user 123
+
+###
+#DELETE http://localhost:8080/v1/badge-system/locations/1
+#Authorization: Basic user 123

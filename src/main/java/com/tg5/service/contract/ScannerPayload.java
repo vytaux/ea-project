@@ -1,20 +1,21 @@
 package com.tg5.service.contract;
 
-import com.tg5.domain.LocationType;
 import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 @Data
-public class LocationPayload implements Serializable {
+public class ScannerPayload implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
+    private String scannerCode;
+
     private String name;
 
-    private LocationType locationType ;
+    private LocationPayload location;
 }
