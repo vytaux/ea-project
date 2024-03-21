@@ -8,6 +8,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -30,6 +31,14 @@ public class Session implements Serializable {
 
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
+
+    @ManyToMany
+    @JoinTable(
+            name = "sessions_members",
+            joinColumns = @JoinColumn(name = "session_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+    private List<Member> members = new ArrayList<>();
 }
 
 
