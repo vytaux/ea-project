@@ -1,48 +1,46 @@
 # CS544-EA project
 
-# Running the project
+## Get Started
 
-First get the common-base-module zip:
+### Install
 
-https://dev.azure.com/comprodev/CS544/_git/common-base-module
-
-After unzipping, comment out the lines in pom.xml:
-
+1. Install [https://github.com/vytaux/common-base-module](https://github.com/vytaux/common-base-module).
+2. Run these commands from the project root:
+   
 ```
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>comprodev</id>-->
-<!--			<url>https://pkgs.dev.azure.com/comprodev/_packaging/comprodev/maven/v1</url>-->
-<!--			<releases>-->
-<!--				<enabled>true</enabled>-->
-<!--			</releases>-->
-<!--			<snapshots>-->
-<!--				<enabled>true</enabled>-->
-<!--			</snapshots>-->
-<!--		</repository>-->
-<!--	</repositories>-->
-
-<!--	<distributionManagement>-->
-<!--		<repository>-->
-<!--			<id>comprodev</id>-->
-<!--			<url>https://pkgs.dev.azure.com/comprodev/_packaging/comprodev/maven/v1</url>-->
-<!--			<releases>-->
-<!--				<enabled>true</enabled>-->
-<!--			</releases>-->
-<!--			<snapshots>-->
-<!--				<enabled>true</enabled>-->
-<!--			</snapshots>-->
-<!--		</repository>-->
-<!--	</distributionManagement>-->
+$ docker compose up -d
 ```
 
-Then, mvn install for the project to install to the maven repository.
-
-Then mvn install ea-project.
-
----
-Add this to your intellij run configuration.
+## Run
 
 ```
---add-opens java.base/java.lang=ALL-UNNAMED
+$ mvn spring-boot:run
+```
+
+## Authenticating Requests
+
+Security is implemented with Spring OAuth. Here are the steps how to authenticate with the api:
+1. Navigate to the API with the browser - you will be asked to login.
+2. After logging in, get the JSESSIONID cookie. To do this in developer tools, go to Application->Cookies.
+3. On Postman, in headers section, add Cookie containing "JSESSIONID=$cookieFromDeveloperTools".
+
+## Developer Notes
+Add this to your JVM options. This prevents orika mapper errors.
+
+```
+$ --add-opens java.base/java.lang=ALL-UNNAMED
+```
+
+### Running tests
+
+Run the unit tests:
+
+```
+$ mvn clean test 
+```
+
+Run the integration tests:
+
+```
+$ mvn clean verify
 ```
