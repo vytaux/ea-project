@@ -37,11 +37,9 @@ public class AccountTypeTest {
         entityManager.persist(accountType3);
         entityManager.flush();
 
-
-        List<Long> accountTypeIds = new ArrayList<>();
-        accountTypeIds.add(accountType1.getId());
-        accountTypeIds.add(accountType2.getId());
-        List<AccountType> found = accountTypeRepository.findAccountTypesByIdIn(accountTypeIds);
+        List<AccountType> found = accountTypeRepository.findAccountTypesByIdIn(List.of(
+                accountType1.getId(),
+                accountType2.getId(), 23465L));
         assertThat(found, hasSize(2));
         assertThat(found, hasItem(hasProperty("id", is(accountType1.getId()))));
         assertThat(found, hasItem(hasProperty("id", is(accountType2.getId()))));
