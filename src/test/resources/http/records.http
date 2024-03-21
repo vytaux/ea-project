@@ -1,8 +1,8 @@
-GET http://localhost:8080/v1/badge-system/records
+GET http://localhost:8080/v1/badge-system/scanners/1/records
 Authorization: Basic user 123
 
 ###
-POST http://localhost:8080/v1/badge-system/records
+POST http://localhost:8080/v1/badge-system/scanners/1/records
 Authorization: Basic user 123
 Content-Type: application/json
 
@@ -12,17 +12,17 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/v1/badge-system/records
+POST http://localhost:8080/v1/badge-system/scanners/1/records
 Authorization: Basic user 123
 Content-Type: application/json
 
 {
-  "member": {"id":  1},
+  "member": {"id":  2},
   "session":{"id": 2}
 }
 
 ###
-POST http://localhost:8080/v1/badge-system/records
+POST http://localhost:8080/v1/badge-system/scanners/1/records
 Authorization: Basic user 123
 Content-Type: application/json
 

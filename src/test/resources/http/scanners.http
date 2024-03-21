@@ -1,0 +1,13 @@
+GET http://localhost:8080/v1/badge-system/scanners
+
+
+###
+POST http://localhost:8080/v1/badge-system/scanners
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "scanner 1",
+  "scanCode": "abc",
+  "location": {"id":  1}
+}
