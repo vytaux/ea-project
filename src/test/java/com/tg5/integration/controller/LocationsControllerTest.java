@@ -2,14 +2,14 @@ package com.tg5.integration.controller;
 
 import com.tg5.domain.Location;
 import com.tg5.domain.LocationType;
-import com.tg5.integration.BaseTest;
+import com.tg5.integration.BaseIntegrationTest;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class LocationsControllerTest extends BaseTest {
+public class LocationsControllerTest extends BaseIntegrationTest {
     @Test
     public void testGetAll() {
         given()
