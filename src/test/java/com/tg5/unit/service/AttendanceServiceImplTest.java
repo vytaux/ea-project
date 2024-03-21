@@ -45,7 +45,7 @@ public class AttendanceServiceImplTest {
         // Set up mock behavior
         when(eventRepository.getByAccountTypeAndDateFromTo(any(String.class), any(LocalDateTime.class), any(LocalDateTime.class)))
                 .thenReturn(Collections.singletonList(mockEvent));
-        when(recordRepository.getCountByEventAndMember(any(), any()))
+        when(recordRepository.countByEventAndMember(any(), any()))
                 .thenReturn(1);
 
         // Call the method
