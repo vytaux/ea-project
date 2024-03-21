@@ -29,12 +29,6 @@ public class MembersController extends BaseReadWriteController<MemberPayload, Me
     public void setAttendanceCalculator(AttendanceCalculator attendanceCalculator) {
         this.attendanceCalculator = attendanceCalculator;
     }
-//
-//    // TODO members CRUD
-//    @GetMapping
-//    public List<Member> getMembers() {
-//        return memberRepository.findAll();
-//    }
 
     // TODO [advanced] member roles CRUD /members/{memberId}/roles
     @GetMapping("/{memberId}/roles")
@@ -48,7 +42,12 @@ public class MembersController extends BaseReadWriteController<MemberPayload, Me
         MemberPayload memberPayload = memberService.findById(memberId);
         Role newRole = new Role();
         newRole.setId(rolePayload.getId());
-        memberPayload.addRole(newRole);
+        // TODO fix
+        RolePayload role = new RolePayload();
+        role.setId(rolePayload.getId());
+        role.setName(rolePayload.getName());
+        memberPayload.addRole(role);
+        //
         memberService.update(memberId, memberPayload);
         return ResponseEntity.ok(memberPayload);
 

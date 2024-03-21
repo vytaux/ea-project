@@ -1,23 +1,13 @@
 package com.tg5.controller;
 
 import com.tg5.domain.*;
-import com.tg5.repository.ScannerRepository;
-import com.tg5.repository.SessionRepository;
-import com.tg5.service.SessionService;
-import com.tg5.service.contract.EventPayload;
-import com.tg5.service.contract.MemberPayload;
 import com.tg5.service.contract.SessionPayload;
 import edu.miu.common.controller.BaseReadWriteController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/events/{eventId}/sessions")
-public class SessionController extends BaseReadWriteController<SessionPayload, Session, Long> {
+public class SessionsController extends BaseReadWriteController<SessionPayload, Session, Long> {
 }
 //    @Autowired
 //    SessionRepository sessionRepository;

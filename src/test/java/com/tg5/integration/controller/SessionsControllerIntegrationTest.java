@@ -1,13 +1,12 @@
 package com.tg5.integration.controller;
 
-import com.tg5.integration.BaseTest;
+import com.tg5.integration.BaseIntegrationTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
-public class SessionControllerTest extends BaseTest {
+public class SessionsControllerIntegrationTest extends BaseIntegrationTest {
 
     @Test
     public void test() {
