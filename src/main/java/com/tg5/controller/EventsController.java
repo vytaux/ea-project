@@ -22,13 +22,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/events")
 public class EventsController extends BaseReadWriteController<EventPayload, Event, Long> {
-    @Autowired
-    private AttendanceServiceImpl attendanceServiceImln;
 
-    @GetMapping("/{eventId}/attendance")
-    public ResponseEntity<Map<String, Double>> getAttendanceByEventId(@PathVariable Long eventId) {
-        Map<String, Double> attendance = attendanceServiceImln.getAttendanceByEventId(eventId);
-        return ResponseEntity.ok(attendance);
-    }
 }
 

@@ -51,6 +51,23 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
         assertEquals(100.00, (float) attendanceData.get("john doe"));
     }
 
+
+
+    @Test
+    public void testAttendanceByEventId() {
+        Response response = given()
+                .log().all()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/accounts/student/attendance/2024-01-01/2024-12-31")
+                .then()
+                .log().body()
+                .statusCode(200)
+                .extract()
+                .response();
+
+    }
+
     private static int createScanner() {
         ScannerPayload scannerPayload = new ScannerPayload();
         scannerPayload.setScannerCode("someScannerCode");
