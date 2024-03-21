@@ -1,0 +1,2 @@
+GET http://localhost:8080/badge-system/events
+Authorization: Basic user 123
