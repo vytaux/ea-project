@@ -8,9 +8,6 @@ import java.util.List;
 
 public interface AccountTypeRepository extends BaseRepository<AccountType,Long> {
 
-    @Query(value = "select distinct a from   Role r  join  r.defaultAccountTypes a   where r.id  in (:roles)")
-    List<AccountType> findByRoles(List<Long> roles);
-
 
     List<AccountType> findAccountTypesByIdIn(List<Long> accountTypeIds);
 }
