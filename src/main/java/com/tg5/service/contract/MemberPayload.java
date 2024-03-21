@@ -22,6 +22,8 @@ public class MemberPayload implements Serializable {
 
     private String email;
 
+    private String barcode;
+
     private List<RolePayload> roles = new ArrayList<>();
 
     public void addRole(RolePayload role){
