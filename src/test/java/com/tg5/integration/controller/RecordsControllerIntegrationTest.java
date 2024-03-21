@@ -12,7 +12,7 @@ public class RecordsControllerIntegrationTest extends BaseIntegrationTest {
         given()
                 .log().all()
                 .when()
-                .get("/records")
+                .get("/scanners/scannerCode/records")
                 .then()
                 .log().body()
                 .contentType(ContentType.JSON)

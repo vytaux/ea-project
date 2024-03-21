@@ -1,6 +1,5 @@
 package com.tg5.integration.controller;
 
-import com.tg5.domain.AccountType;
 import com.tg5.integration.BaseIntegrationTest;
 import com.tg5.service.contract.*;
 import io.restassured.RestAssured;
@@ -35,12 +34,12 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
                 .log().all()
                 .contentType(ContentType.JSON)
                 .when()
-                    .get("/accounts/student/attendance/2024-01-01/2024-12-31")
+                .get("/accounts/student/attendance/2024-01-01/2024-12-31")
                 .then()
-                    .log().body()
-                    .statusCode(200)
-                    .extract()
-                    .response();
+                .log().body()
+                .statusCode(200)
+                .extract()
+                .response();
 
         assertEquals("2024-01-01T00:00:00", response.jsonPath().getString("fromDate"));
         assertEquals("2024-12-31T23:59:59", response.jsonPath().getString("toDate"));
@@ -60,10 +59,10 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
                 .contentType(ContentType.JSON)
                 .body(scannerPayload)
                 .when()
-                    .post("/scanners")
+                .post("/scanners")
                 .then()
-                    .extract()
-                    .response();
+                .extract()
+                .response();
 
         System.out.println(response.getBody().asString());
 
@@ -92,10 +91,10 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
                 .contentType(ContentType.JSON)
                 .body(recordPayload)
                 .when()
-                    .post("/scanners/someScannerCode/records")
+                .post("/scanners/someScannerCode/records")
                 .then()
-                    .extract()
-                    .response();
+                .extract()
+                .response();
 
         System.out.println(response.getBody().asString());
     }
@@ -203,11 +202,11 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
                 .contentType(ContentType.JSON)
                 .body(accountTypePayload)
                 .when()
-                    .post("/account-types")
+                .post("/account-types")
                 .then()
-                    .log().all()
-                    .extract()
-                    .response();
+                .log().all()
+                .extract()
+                .response();
 
         return response.jsonPath().getInt("id");
     }

@@ -1,0 +1,27 @@
+GET http://localhost:8080/v1/badge-system/accounts
+
+###
+POST http://localhost:8080/v1/badge-system/accounts
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "my first account",
+  "description": "my first account description",
+  "balance": 100,
+  "member": {"id": 1},
+  "type": {"id":  1}
+}
+
+###
+POST http://localhost:8080/v1/badge-system/accounts
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "name": "my second account",
+  "description": "my second account description",
+  "balance": 200,
+  "member": {"id": 1},
+  "type": {"id":  2}
+}

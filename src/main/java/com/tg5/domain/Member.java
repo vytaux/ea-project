@@ -21,6 +21,9 @@ public class Member implements Serializable {
 
     private String email;
 
+    @Column(unique = true)
+    private String barcode;
+
     @ManyToMany
     @JoinTable(
         name = "members_roles",
