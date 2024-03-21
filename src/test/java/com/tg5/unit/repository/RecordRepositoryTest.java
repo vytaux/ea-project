@@ -1,14 +1,14 @@
 package com.tg5.unit.repository;
 
-import com.tg5.domain.Event;
-import com.tg5.domain.Member;
+import com.tg5.domain.*;
 import com.tg5.domain.Record;
-import com.tg5.domain.Session;
 import com.tg5.repository.RecordRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,7 +23,6 @@ public class RecordRepositoryTest {
 
     @Test
     public void testGetCountByEventAndMember() {
-        // Create and persist a Record with a specific Event and Member
         Member member = new Member();
         Event event = new Event();
 
@@ -40,10 +39,24 @@ public class RecordRepositoryTest {
         entityManager.persist(record);
         entityManager.flush();
 
-        // Call the getCountByEventAndMember method with the same Event and Member
         int count = recordRepository.getCountByEventAndMember(event, member);
 
-        // Assert that the returned count is 1
         assertEquals(1, count);
     }
-}
+    @Test
+    public void testFindAllByScannerCode() {
+        String scannerCode = "testScannerCode";
+        Scanner scanner = new Scanner();
+        scanner.setScannerCode(scannerCode);
+        entityManager.persist(scanner);
+
+        Record record = new Record();
+        record.setScanner(scanner);
+        entityManager.persist(record);
+        entityManager.flush();
+
+        List<Record> records = recordRepository.findAllByScannerCode(scannerCode);
+
+        assertEquals(1, records.size());
+        assertEquals(record.getId(), records.get(0).getId());
+    }}
