@@ -5,6 +5,7 @@ import com.tg5.domain.Member;
 import com.tg5.repository.EventRepository;
 import com.tg5.repository.RecordRepository;
 import com.tg5.repository.SessionRepository;
+import com.tg5.service.AttendanceServiceImpl;
 import com.tg5.service.EventService;
 import com.tg5.service.contract.EventPayload;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/events")
 public class EventsController extends BaseReadWriteController<EventPayload, Event, Long> {
+    @Autowired
+    private AttendanceServiceImpl attendanceServiceImln;
+
+    @GetMapping("/{eventId}/attendance")
+    public ResponseEntity<Map<String, Double>> getAttendanceByEventId(@PathVariable Long eventId) {
+        Map<String, Double> attendance = attendanceServiceImln.getAttendanceByEventId(eventId);
+        return ResponseEntity.ok(attendance);
+    }
 }
+
