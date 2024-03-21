@@ -12,9 +12,12 @@ server:
     context-path: /v1/badge-system
 spring:
   security:
-    user:
-      name: user
-      password: 123
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 605203149703-u7urp1jt254bpndaolstl8r0dvh3ln88.apps.googleusercontent.com
+            client-secret: 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
   application:
     name: Electronic Badge/Attendance System
   datasource:
