@@ -5,6 +5,7 @@ import com.tg5.domain.AccountType;
 import com.tg5.domain.Member;
 import com.tg5.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +18,9 @@ public class LowBalanceCronAlert {
     private AccountRepository accountRepository;
 
     @Autowired
-    private MessageProducer messageProducer;
+    private JmsTemplate jmsTemplate;
 
-    @Scheduled(fixedRate = 50000) // Execute every 5 seconds
+    @Scheduled(fixedRate = 50000) // Execute every 50 seconds
     public void sendLowBalanceAlertMessage() {
         System.out.println("Checking all low balance accounts and sending mails.......");
 //        messageProducer.sendMessage("ams",
@@ -34,7 +35,7 @@ public class LowBalanceCronAlert {
             double percentage = account.getBalance()/ accountType.getBalance().valueOf() * 100;
                                                                         //Calculate percentage
             if (percentage < 5) {                                       //If balance dropped less than 5 percent
-                messageProducer.sendMessage("ams",
+                jmsTemplate.convertAndSend("ams",
                                             member.getEmail()+"#"+"[Alerts] Low Balance!#"
                                                         +"Your Balance for Account"
                                                         +accountType.getName()+"is Low!");

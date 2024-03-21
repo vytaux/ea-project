@@ -12,6 +12,7 @@ public class Application {
 
 	@Autowired
 	private MessageConsumer messageConsumer;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
