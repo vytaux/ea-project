@@ -9,10 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(scanBasePackages = {"edu.miu.common", "com.tg5"})
 @EnableScheduling
 public class Application {
-
-	@Autowired
-	private MessageConsumer messageConsumer;
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

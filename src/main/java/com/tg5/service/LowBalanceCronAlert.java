@@ -20,17 +20,17 @@ public class LowBalanceCronAlert {
     @Autowired
     private JmsTemplate jmsTemplate;
 
-    @Scheduled(fixedRate = 50000) // Execute every 50 seconds
+    @Scheduled(fixedRate = 5000) // Execute every 50 seconds
     public void sendLowBalanceAlertMessage() {
         System.out.println("Checking all low balance accounts and sending mails.......");
-//        messageProducer.sendMessage("ams",
+//        jmsTemplate.convertAndSend("ams",
 //                "dip06ece@gmail.com"+"#"+"[Alerts] Low Balance! #"
 //                        +"Your Balance for Account"
 //                        +" XXXX"+" is Low!");   //simulation and test purpose
 
         List<Account> accounts = accountRepository.findAll();           //Reading list of all accounts
         for(Account account: accounts) {                                //For every account in list
-            AccountType accountType = account.getType();                //Read AccountType
+            AccountType accountType = account.getAccountType();               //Read AccountType
             Member member = account.getMember();                        //Read member
             double percentage = account.getBalance()/ accountType.getBalance().valueOf() * 100;
                                                                         //Calculate percentage
