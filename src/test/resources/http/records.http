@@ -30,3 +30,34 @@ Content-Type: application/json
   "member": {"id":  1},
   "session":{"id": 4}
 }
+
+
+###
+POST http://localhost:8080/v1/badge-system/scanners/1/records
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "member": {"id":  2},
+  "session":{"id": 1}
+}
+
+###
+POST http://localhost:8080/v1/badge-system/scanners/1/records
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "member": {"id":  2},
+  "session":{"id": 2}
+}
+
+###
+POST http://localhost:8080/v1/badge-system/scanners/1/records
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "member": {"id":  2},
+  "session":{"id": 4}
+}
