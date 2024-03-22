@@ -38,3 +38,13 @@ Authorization: Basic user 123
 ###
 #DELETE http://localhost:8080/v1/badge-system/locations/1
 #Authorization: Basic user 123
+
+PUT http://localhost:8080/v1/badge-system/locations/1
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "id": 5,
+  "name": "RESTAURANT",
+  "locationType": "RESTAURANT"
+}
