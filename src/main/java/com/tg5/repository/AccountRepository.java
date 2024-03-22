@@ -7,5 +7,4 @@ import edu.miu.common.repository.BaseRepository;
 import java.util.List;
 
 public interface AccountRepository extends BaseRepository<Account, Long> {
-    List<Account> findAccountsByMember(Member member);
 }
