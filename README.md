@@ -23,7 +23,7 @@ $ docker compose up -d
 ## Run
 
 ```
-$ mvn spring-boot:run
+$ ./mvnw spring-boot:run
 ```
 
 ## Authenticating Requests
@@ -45,11 +45,11 @@ $ --add-opens java.base/java.lang=ALL-UNNAMED
 Run the unit tests:
 
 ```
-$ mvn clean test 
+$ ./mvnw clean test 
 ```
 
 Run the integration tests:
 
 ```
-$ mvn clean verify
+$ ./mvnw clean verify
 ```
