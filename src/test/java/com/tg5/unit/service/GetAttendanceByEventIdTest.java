@@ -51,17 +51,7 @@ public class GetAttendanceByEventIdTest {
 
 
         // mock sessions
-        Session mockSession1 = new Session();
-        mockSession1.setEvent(mockEvent);
-        Session mockSession2 = new Session();
-        mockSession2.setEvent(mockEvent);
-
-        Session mockSession3 = new Session();
-        mockSession3.setEvent(mockEvent);
-        Session mockSession4 = new Session();
-        mockSession4.setEvent(mockEvent);
-
-        mockEvent.setSessions(Arrays.asList(mockSession1, mockSession2, mockSession3, mockSession4));
+        mockEvent.setSessions(Arrays.asList(new Session(), new Session(), new Session(), new Session()));
         mockEvent.setMembers(List.of(mockMember1, mockMember2));
 
         // Set up mock behavior
