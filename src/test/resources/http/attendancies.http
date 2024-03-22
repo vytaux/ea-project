@@ -3,3 +3,12 @@ GET http://localhost:8080/v1/badge-system/members/1/events/1/attendance
 
 ###
 GET http://localhost:8080/v1/badge-system/members/1/attendance
+
+
+###
+GET http://localhost:8080/v1/badge-system/reports/attendance?eventId=1
+Accept: json
+###
+
+GET http://localhost:8080/v1/badge-system/reports/attendance?eventId=1
+Accept: excel

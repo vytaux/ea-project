@@ -102,3 +102,24 @@ Content-Type: application/json
 #DELETE http://localhost:8080/v1/badge-system/members/4/roles/1
 #Authorization: Basic user 123
 #Content-Type: application/json
+
+###
+PUT http://localhost:8080/v1/badge-system/members/2
+Authorization: Basic user 123
+Content-Type: application/json
+
+{
+  "id": 2,
+  "firstname": "Joe",
+  "lastname": "Doe",
+  "email": "joe@miu.edu",
+  "barcode": "123456789013",
+  "roles": [
+    {
+      "id":2
+    },
+    {
+      "id":1
+    }
+  ]
+}
