@@ -25,7 +25,7 @@ public class RolesControllerIT extends BaseIT {
     public void testPost() {
         // add a role
         Role role = new Role();
-        role.setName("student");
+        role.setName("teacher");
         given()
                 .contentType("application/json")
                 .body(role)

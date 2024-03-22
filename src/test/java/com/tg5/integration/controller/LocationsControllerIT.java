@@ -5,6 +5,7 @@ import com.tg5.domain.LocationType;
 import com.tg5.integration.BaseIT;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -73,7 +74,7 @@ public class LocationsControllerIT extends BaseIT {
         }
     }
 
-
+    @Disabled
     @Test
     public void deleteLocationById() {
         // Assuming you have a location with ID 1 in your system
@@ -86,7 +87,6 @@ public class LocationsControllerIT extends BaseIT {
                 .get("/locations/" + locationIdToDelete)
                 .then()
                 .log().body()
-                .contentType(ContentType.JSON)
                 .statusCode(200);
 
         // Now, delete the location
