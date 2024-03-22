@@ -2,12 +2,12 @@
 
 ## Proudly Presented by Team #5
 
-1. [Vytautas Asmantavicius](https://github.com/vytaux)
-2. [Jean Claude Gombaniro](https://github.com/gombaniro)
-3. [Dip Ranjon Das](https://github.com/dip06ece)
-4. [Eden Gebrewold](https://github.com/ediyeedu)
-5. [Adonay Gebrerufael](https://github.com/adonaygebrerufael)
-6. [Taoufiq El Moutaouakil](https://github.com/toto1949)
++ [Vytautas Asmantavicius](https://github.com/vytaux)
++ [Jean Claude Gombaniro](https://github.com/gombaniro)
++ [Dip Ranjon Das](https://github.com/dip06ece)
++ [Eden Gebrewold](https://github.com/ediyeedu)
++ [Adonay Gebrerufael](https://github.com/adonaygebrerufael)
++ [Taoufiq El Moutaouakil](https://github.com/toto1949)
 
 ## Let's Get Started
 
