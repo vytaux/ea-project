@@ -1,8 +1,9 @@
-package com.tg5.integration.controller;
+package com.tg5.unit.controller;
 
 import com.tg5.controller.RecordsController;
 import com.tg5.domain.Record;
 import com.tg5.service.RecordServiceImpl;
+import com.tg5.service.contract.RecordPayload;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,10 +34,10 @@ class RecordsControllerTest {
     public void testAddRecord() throws Exception {
         Record record = new Record();
         when(recordService.addRecord("testScannerCode", record)).thenReturn(record);
-        mockMvc.perform(post("/scanners/testScannerCode/records")
+        mockMvc.perform(post("/scanners/testScannerCode/record")
                         .content("{}")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
     @Test
     public void testFindAllRecordsByScannerCode() throws Exception {
@@ -44,7 +45,7 @@ class RecordsControllerTest {
         records.add(mock(Record.class));
         records.add(mock(Record.class));
         when(recordService.findAllByScannerCode(anyString())).thenReturn(records);
-        mockMvc.perform(get("/scanners/testScannerCode/records")
+        mockMvc.perform(get("/scanners/testScannerCode/record")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
@@ -53,7 +54,7 @@ class RecordsControllerTest {
     public void testUpdateRecord() throws Exception {
         Record updatedRecord = new Record();
         when(recordService.updateRecord("testScannerCode", 1L, updatedRecord)).thenReturn(updatedRecord);
-        mockMvc.perform(put("/scanners/testScannerCode/records/1")
+        mockMvc.perform(put("/scanners/testScannerCode/record/1")
                         .content("{}")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -62,7 +63,7 @@ class RecordsControllerTest {
     @Test
     public void testDeleteRecord() throws Exception {
         doNothing().when(recordService).deleteRecord("testScannerCode", 1L);
-        mockMvc.perform(delete("/scanners/testScannerCode/records/1")
+        mockMvc.perform(delete("/scanners/testScannerCode/record/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
