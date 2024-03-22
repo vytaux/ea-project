@@ -77,6 +77,9 @@ public class AttendanceServiceImpl implements AttendanceService {
         response.setFromDate(from);
         response.setToDate(to);
 
+        // check how many sessions in total, so select from sessionRepository
+        // then limit by member
+
         List<Event> events = eventRepository.getByAccountTypeAndDateFromTo(accountType, from, to);
 
         for (Event event : events) {
