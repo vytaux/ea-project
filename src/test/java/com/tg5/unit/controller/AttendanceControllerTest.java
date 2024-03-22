@@ -11,6 +11,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Map;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -34,6 +36,36 @@ public class AttendanceControllerTest {
                 .thenReturn(new AttendanceByAccountTypeByDateFromToReport());
 
         mockMvc.perform(get("/accounts/student/attendance/2022-01-01/2022-12-31")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetAttendanceByEventId() throws Exception {
+        when(attendanceService.getAttendanceByEventId(any()))
+                .thenReturn(Map.of());
+
+        mockMvc.perform(get("/events/1/attendance")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetAttendancePerMemberForAllAccount() throws Exception {
+        when(attendanceService.getAttendancePerMemberForAllAccount(any()))
+                .thenReturn(Map.of());
+
+        mockMvc.perform(get("/members/1/attendance")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetMemberOverEventAttendance() throws Exception {
+        when(attendanceService.calculateAttendancePerMemberForEvent(any(), any()))
+                .thenReturn(Map.of());
+
+        mockMvc.perform(get("/members/1/events/1/attendance")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
