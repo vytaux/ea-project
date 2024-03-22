@@ -26,8 +26,6 @@ public interface EventRepository extends BaseRepository<Event, Long> {
             @QueryParam("to") LocalDateTime to
     );
 
-    Event findEventByAccountType(AccountType accountType);
-
     @Query("select e from  Event e inner join e.members s where s.id = :memberId")
     List<Event> findAllEventsByMemberId(Long memberId);
 }

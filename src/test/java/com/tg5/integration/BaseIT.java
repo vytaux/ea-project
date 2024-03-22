@@ -1,57 +1,24 @@
-package com.tg5.integration.controller;
+package com.tg5.integration;
 
-import com.tg5.integration.BaseIntegrationTest;
 import com.tg5.service.contract.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
+public class BaseIT {
 
-    @BeforeEach
-    public void setup() {
-        int memberId = createMember();
-        int eventId = createEvent();
-        int sessionId = createSession(eventId);
-        int accountTypeId = createAccountType();
-        createMemberRegistration(eventId, memberId, accountTypeId);
-        int scannerId = createScanner();
-        createRecord(memberId, sessionId, scannerId);
+    @BeforeAll
+    public static void beforeAll() {
+        RestAssured.baseURI = "http://localhost:8080/v1/badge-system";
     }
 
-    @Test
-    public void testGetMemberEventAttendanceByAccountTypeAndDate() {
-        Response response = given()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .when()
-                .get("/accounts/student/attendance/2024-01-01/2024-12-31")
-                .then()
-                .log().body()
-                .statusCode(200)
-                .extract()
-                .response();
-
-        assertEquals("2024-01-01T00:00:00", response.jsonPath().getString("fromDate"));
-        assertEquals("2024-12-31T23:59:59", response.jsonPath().getString("toDate"));
-        assertEquals("student", response.jsonPath().getString("accountType"));
-
-        Map<Object, Object> attendanceData = response.jsonPath().getMap("attendancePercent");
-        System.out.println(attendanceData);
-
-        assertEquals(100.00, (float) attendanceData.get("john doe"));
-    }
-
-    private static int createScanner() {
+    protected static int createScanner() {
         ScannerPayload scannerPayload = new ScannerPayload();
         scannerPayload.setScannerCode("someScannerCode");
 
@@ -69,7 +36,7 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
         return response.jsonPath().getInt("id");
     }
 
-    private static void createRecord(int memberId, int sessionId, int scannerId) {
+    protected static int createRecord(int memberId, int sessionId, int scannerId) {
         RecordPayload recordPayload;
         MemberPayload memberPayload;
         SessionPayload sessionPayload;
@@ -97,9 +64,11 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
                 .response();
 
         System.out.println(response.getBody().asString());
+
+        return response.jsonPath().getInt("id");
     }
 
-    private static void createMemberRegistration(int eventId, int memberId, int accountTypeId) {
+    protected static void createMemberRegistration(int eventId, int memberId, int accountTypeId) {
         EventPayload eventPayload;
         MemberPayload memberPayload;
 
@@ -126,7 +95,7 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
         System.out.println(response.getBody().asString());
     }
 
-    private static int createSession(int eventId) {
+    protected static int createSession(int eventId) {
         Response response;
         EventPayload eventPayload;
         SessionPayload sessionPayload;
@@ -149,7 +118,7 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
         return response.jsonPath().getInt("id");
     }
 
-    private static int createEvent() {
+    protected static int createEvent() {
         EventPayload eventPayload;
         Response response;
 
@@ -169,7 +138,7 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
         return response.jsonPath().getInt("id");
     }
 
-    private static int createMember() {
+    protected static int createMember() {
         Response response;
         MemberPayload memberPayload;
 
@@ -192,7 +161,7 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
         return response.jsonPath().getInt("id");
     }
 
-    private static int createAccountType() {
+    protected static int createAccountType() {
         AccountTypePayload accountTypePayload = new AccountTypePayload();
         accountTypePayload.setName("student");
 
@@ -209,5 +178,54 @@ public class AttendanceControllerIntegrationTest extends BaseIntegrationTest {
                 .response();
 
         return response.jsonPath().getInt("id");
+    }
+
+    protected void deleteRecord(int recordId) {
+        given()
+                .when()
+                .delete("/scanners/someScannerCode/records/" + recordId)
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+    protected void deleteScanner(int scannerId) {
+        given()
+                .log().all()
+                .when()
+                .delete("/scanners/" + scannerId)
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+    protected void deleteMember(int memberId) {
+        given()
+                .log().all()
+                .when()
+                .delete("/members/" + memberId)
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+    protected void deleteEvent(int eventId) {
+        given()
+                .log().all()
+                .when()
+                .delete("/events/" + eventId)
+                .then()
+                .log().body()
+                .statusCode(200);
+    }
+
+    protected void deleteSession(int eventId, int sessionId) {
+        given()
+                .log().all()
+                .when()
+                .delete("/events/" + eventId  + "/sessions/" + sessionId)
+                .then()
+                .log().body()
+                .statusCode(200);
     }
 }

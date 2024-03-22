@@ -1,32 +1,21 @@
 package com.tg5.integration.controller;
 
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import com.tg5.service.contract.EventPayload;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 
-public class EventsControllerIntegrationTest extends BaseIntegrationTest {
+public class EventsControllerIT extends BaseIT {
 
     @Test
     public void testFindAll() {
         // prepare
-        EventPayload eventPayload = new EventPayload();
-
-        Integer savedId = given()
-                .log().all()
-                .contentType(ContentType.JSON)
-                .body(eventPayload)
-                .when()
-                    .post("/events")
-                .then()
-                    .log().body()
-                    .statusCode(200)
-                    .extract()
-                    .path("id");
+        int savedId = createEvent();
 
         // test
         given()
@@ -38,6 +27,9 @@ public class EventsControllerIntegrationTest extends BaseIntegrationTest {
                     .log().body()
                     .statusCode(200)
                     .body("id", hasItems(savedId));
+
+        // teardown
+        deleteEvent(savedId);
     }
 
     @Test
@@ -47,14 +39,18 @@ public class EventsControllerIntegrationTest extends BaseIntegrationTest {
         eventPayload.setName("new-event");
 
         // test
-        given()
+        Response response = given()
                 .contentType(ContentType.JSON)
                 .body(eventPayload)
                 .when()
-                    .post("/events")
+                .post("/events")
                 .then()
-                    .statusCode(200)
-                    .body("name", equalTo(eventPayload.getName()));
+                .statusCode(200)
+                .body("name", equalTo(eventPayload.getName()))
+                .extract().response();
+
+        // teardown
+        deleteEvent(response.jsonPath().getInt("id"));
     }
 
     @Test
@@ -63,7 +59,7 @@ public class EventsControllerIntegrationTest extends BaseIntegrationTest {
         EventPayload eventPayload = new EventPayload();
         eventPayload.setName("new-event");
 
-        Integer savedId = given()
+        int savedId = given()
                 .contentType(ContentType.JSON)
                 .body(eventPayload)
                 .when()
@@ -71,11 +67,10 @@ public class EventsControllerIntegrationTest extends BaseIntegrationTest {
                 .then()
                     .statusCode(200)
                     .body("name", equalTo(eventPayload.getName()))
-                    .extract()
-                    .path("id");
+                    .extract().jsonPath().getInt("id");
 
         EventPayload updatedEventPayload = new EventPayload();
-        updatedEventPayload.setId(savedId.longValue());
+        updatedEventPayload.setId((long) savedId);
         updatedEventPayload.setName("updated-event");
 
         // test
@@ -84,11 +79,15 @@ public class EventsControllerIntegrationTest extends BaseIntegrationTest {
                 .contentType(ContentType.JSON)
                 .body(updatedEventPayload)
                 .when()
-                    .put("/events/" + savedId)
+                .put("/events/" + savedId)
                 .then()
-                    .log().body()
-                    .statusCode(200)
-                    .body("name", equalTo(updatedEventPayload.getName()));
+                .log().body()
+                .statusCode(200)
+                .body("name", equalTo(updatedEventPayload.getName()));
+
+
+        // teardown
+        deleteEvent(savedId);
     }
 
     @Test
@@ -98,15 +97,14 @@ public class EventsControllerIntegrationTest extends BaseIntegrationTest {
         eventPayload.setName("event-to-delete");
 
         // Post new EventPayload and get its id
-        Integer id = given()
+        int id = given()
                 .contentType(ContentType.JSON)
                 .body(eventPayload)
                 .when()
                     .post("/events")
                 .then()
                     .statusCode(200)
-                    .extract()
-                    .path("id");
+                    .extract().jsonPath().getInt("id");
 
         // Delete the event
         given()

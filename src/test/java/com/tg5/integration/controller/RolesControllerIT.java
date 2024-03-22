@@ -1,13 +1,13 @@
 package com.tg5.integration.controller;
 
 import com.tg5.domain.Role;
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class RolesControllerIntegrationTest extends BaseIntegrationTest {
+public class RolesControllerIT extends BaseIT {
 
     @Test
     public void testGet() {
@@ -25,7 +25,7 @@ public class RolesControllerIntegrationTest extends BaseIntegrationTest {
     public void testPost() {
         // add a role
         Role role = new Role();
-        role.setName("student");
+        role.setName("teacher");
         given()
                 .contentType("application/json")
                 .body(role)

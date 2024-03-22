@@ -15,5 +15,4 @@ public interface RecordRepository extends BaseRepository<Record, Long> {
             "AND r.member=:member")
     int countByEventAndMember(Member member, Event event);
 
-    //int countBySession(Session session);
 }

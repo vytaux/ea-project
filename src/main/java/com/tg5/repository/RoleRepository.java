@@ -9,6 +9,4 @@ import java.util.List;
 
 public interface RoleRepository extends BaseRepository<Role, Long> {
 
-    @Query("select r from Role r where r.id in (:roleIds)")
-    List<Role> findRoleDetailsByIds(@Param("roleIds") List<Long> roleIds);
 }
