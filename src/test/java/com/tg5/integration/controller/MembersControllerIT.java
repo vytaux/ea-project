@@ -1,7 +1,7 @@
 package com.tg5.integration.controller;
 
 import com.tg5.domain.Member;
-import com.tg5.integration.BaseIntegrationTest;
+import com.tg5.integration.BaseIT;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class MembersControllerTest extends BaseIntegrationTest {
+public class MembersControllerIT extends BaseIT {
 
     @Test
     public void testGetAllMembers() {
