@@ -8,5 +8,4 @@ import edu.miu.common.service.BaseReadWriteService;
 import java.util.List;
 
 public interface EventService extends BaseReadWriteService <EventPayload, Event, Long>{
-   // List<SessionPayload> getAttendanceForEvent(Long eventId);
 }

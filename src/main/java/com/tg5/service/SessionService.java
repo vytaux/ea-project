@@ -13,17 +13,6 @@ import java.util.List;
 //
 
 public interface SessionService extends BaseReadWriteService <SessionPayload, Session, Long>{
-
-   // List<Session> getAllSessionsByEventId(Long eventId);
-//    List<Session> getAllSessionsByEventId(Long eventId);
-//
-//    Session getSessionById(Long eventId, Long sessionId);
-//
-//    Session createSession(Long eventId, Session session);
-//
-//    Session updateSession(Long eventId, Long sessionId, Session session);
-//
-//    void deleteSession(Long eventId, Long sessionId);
 }
 
 

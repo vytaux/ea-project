@@ -28,7 +28,7 @@ public class RoleServiceImpl extends BaseReadWriteServiceImpl<RolePayload, Role,
         Role role = new Role();
         role.setName(request.getName());
         role.setDefaultAccountTypes(types);
-        roleRepository.save(role);
+        role = roleRepository.save(role);
         request.setId(role.getId());
         return request;
     }

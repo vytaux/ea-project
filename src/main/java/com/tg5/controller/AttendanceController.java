@@ -26,7 +26,7 @@ public class AttendanceController {
     }
 
     @GetMapping("/members/{memberId}/events/{eventId}/attendance")
-    public double getMemberOverEventAttendance(@PathVariable Long memberId, @PathVariable Long eventId) {
+    public Map<String, Double>  getMemberOverEventAttendance(@PathVariable Long memberId, @PathVariable Long eventId) {
         return attendanceService.calculateAttendancePerMemberForEvent(memberId, eventId);
     }
 
