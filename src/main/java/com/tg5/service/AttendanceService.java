@@ -10,7 +10,7 @@ public interface AttendanceService {
 
     Map<String, Double> getAttendancePerMemberForAllAccount(Long userId);
 
-    double calculateAttendancePerMemberForEvent(Long memberId, Long eventId);
+    Map<String, Double> calculateAttendancePerMemberForEvent(Long memberId, Long eventId);
 
     AttendanceByAccountTypeByDateFromToReport getAttendanceByAccountTypeByDateFromTo(
             String accountType,

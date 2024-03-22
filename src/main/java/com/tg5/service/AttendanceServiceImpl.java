@@ -53,12 +53,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public double calculateAttendancePerMemberForEvent(Long memberId, Long eventId) {
+    public Map<String, Double> calculateAttendancePerMemberForEvent(Long memberId, Long eventId) {
         Event event = eventRepository.findById(eventId).orElseThrow();
         Member member = memberRepository.findById(memberId).orElseThrow();
         int totalSessions = event.getSessions().size();
         int totalAttendance = recordRepository.countByEventAndMember(member, event);
-        return ((double) totalAttendance / totalSessions) * 100;
+        return Map.of(member.getFullName(), ((double) totalAttendance / totalSessions) * 100);
     }
 
     @Override
