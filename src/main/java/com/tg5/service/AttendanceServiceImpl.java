@@ -64,23 +64,20 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public AttendanceByAccountTypeByDateFromToReport getAttendanceByAccountTypeByDateFromTo(
             String accountType,
-            String fromDate,
-            String toDate
+            LocalDate fromDate,
+            LocalDate toDate
     ) {
-        LocalDateTime from = LocalDate.parse(fromDate).atTime(0, 0);
-        LocalDateTime to = LocalDate.parse(toDate).atTime(23, 59, 59);
-
         AttendanceByAccountTypeByDateFromToReport response =
                 new AttendanceByAccountTypeByDateFromToReport();
 
         response.setAccountType(accountType);
-        response.setFromDate(from);
-        response.setToDate(to);
+        response.setFromDate(fromDate);
+        response.setToDate(toDate);
 
         // check how many sessions in total, so select from sessionRepository
         // then limit by member
 
-        List<Event> events = eventRepository.getByAccountTypeAndDateFromTo(accountType, from, to);
+        List<Event> events = eventRepository.getByAccountTypeAndDateFromTo(accountType, fromDate, toDate);
 
         for (Event event : events) {
             int eventSessionsCount = event.getSessions().size();

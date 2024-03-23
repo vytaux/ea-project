@@ -2,6 +2,7 @@ package com.tg5.service;
 
 import com.tg5.service.reports.AttendanceByAccountTypeByDateFromToReport;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 public interface AttendanceService {
@@ -14,7 +15,7 @@ public interface AttendanceService {
 
     AttendanceByAccountTypeByDateFromToReport getAttendanceByAccountTypeByDateFromTo(
             String accountType,
-            String fromDate,
-            String toDate
+            LocalDate fromDate,
+            LocalDate toDate
     );
 }
