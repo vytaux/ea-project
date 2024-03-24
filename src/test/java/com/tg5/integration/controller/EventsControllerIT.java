@@ -6,6 +6,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
@@ -15,7 +17,7 @@ public class EventsControllerIT extends BaseIT {
     @Test
     public void testFindAll() {
         // prepare
-        int savedId = createEvent();
+        int savedId = createEvent("2024-01-01T00:00", "2024-01-13T00:00");
 
         // test
         given()

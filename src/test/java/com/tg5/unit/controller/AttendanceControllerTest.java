@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -32,8 +33,11 @@ public class AttendanceControllerTest {
 
     @Test
     public void testGetMemberEventAttendanceByAccountTypeAndDate() throws Exception {
-        when(attendanceService.getAttendanceByAccountTypeByDateFromTo(any(String.class), anyString(), anyString()))
-                .thenReturn(new AttendanceByAccountTypeAndWithinIntervalReport());
+        when(attendanceService.getAttendanceByAccountTypeByDateFromTo(
+                any(String.class),
+                any(LocalDate.class),
+                any(LocalDate.class))
+        ).thenReturn(new AttendanceByAccountTypeAndWithinIntervalReport());
 
         mockMvc.perform(get("/accounts/student/attendance/2022-01-01/2022-12-31")
                         .contentType(MediaType.APPLICATION_JSON))

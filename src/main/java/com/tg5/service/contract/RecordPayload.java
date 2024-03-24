@@ -1,8 +1,6 @@
 package com.tg5.service.contract;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.tg5.domain.Member;
-import com.tg5.domain.Session;
 import lombok.Data;
 
 import java.io.Serial;
@@ -21,5 +19,5 @@ public class RecordPayload implements Serializable {
     private ScannerPayload scanner;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime scannedAt;
+    private LocalDateTime scanDateTime;
 }

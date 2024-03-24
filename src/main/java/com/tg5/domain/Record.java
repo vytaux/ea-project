@@ -1,5 +1,6 @@
 package com.tg5.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,7 +22,6 @@ public class Record implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @CreationTimestamp
     private LocalDateTime scanDateTime;
 
     @ManyToOne

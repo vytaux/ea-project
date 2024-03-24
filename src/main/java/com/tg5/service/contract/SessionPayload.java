@@ -21,10 +21,10 @@ public class SessionPayload implements Serializable {
     private String name;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime startTime;
+    private LocalDateTime startDateTime;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime endTime;
+    private LocalDateTime endDateTime;
 
     private EventPayload event;
 

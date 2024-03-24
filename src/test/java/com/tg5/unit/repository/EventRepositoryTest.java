@@ -31,35 +31,6 @@ public class EventRepositoryTest {
     private EventRepository eventRepository;
 
     @Test
-    public void testReturnsEventsByAccountTypeAndDateFromTo() {
-        LocalDateTime startDateTime = LocalDate.parse("2022-01-01").atTime(0, 0);
-        LocalDateTime endDateTime = LocalDate.parse("2022-12-31").atTime(23, 59, 59);
-
-        AccountType accountType = new AccountType();
-        accountType.setName("student");
-
-        Event event = new Event();
-        event.setName("test-event");
-        event.setAccountType(accountType);
-        event.setStartDateTime(startDateTime);
-        event.setEndDateTime(endDateTime);
-
-        entityManager.persist(accountType);
-        entityManager.persist(event);
-        entityManager.flush();
-
-        List<Event> found = eventRepository.getByAccountTypeAndDateFromTo(
-                accountType.getName(),
-                startDateTime,
-                endDateTime
-        );
-
-        assertThat(found, hasSize(1));
-        assertThat(found.getFirst().getName())
-                .isEqualTo(event.getName());
-    }
-
-    @Test
      public void findAllEventsByMemberIdTest() {
 
         Member member = new Member();

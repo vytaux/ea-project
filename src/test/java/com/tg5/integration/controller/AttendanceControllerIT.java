@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -22,12 +23,12 @@ public class AttendanceControllerIT extends BaseIT {
     public void testGetMemberEventAttendanceByAccountTypeAndDate() {
         // prepare
         int memberId = createMember();
-        int eventId = createEvent();
-        int sessionId = createSession(eventId);
+        int eventId = createEvent("2024-02-02T12:00", "2024-09-30T12:00");
+        int sessionId = createSession(eventId, "2024-02-03T10:00", "2024-02-03T12:00");
         int accountTypeId = createAccountType();
-        createMemberRegistration(eventId, memberId, accountTypeId);
+        createMemberRegistration(eventId, memberId, accountTypeId, "2024-02-02T12:00", "2024-09-30T12:00");
         int scannerId = createScanner();
-        int recordId = createRecord(memberId, sessionId, scannerId);
+        int recordId = createRecord(memberId, sessionId, scannerId, "2024-02-03T11:00");
 
         // test
         Response response = given()
@@ -41,11 +42,11 @@ public class AttendanceControllerIT extends BaseIT {
                 .extract()
                 .response();
 
-        assertEquals("2024-01-01T00:00:00", response.jsonPath().getString("fromDate"));
-        assertEquals("2024-12-31T23:59:59", response.jsonPath().getString("toDate"));
+        assertEquals("2024-01-01", response.jsonPath().getString("fromDate"));
+        assertEquals("2024-12-31", response.jsonPath().getString("toDate"));
         assertEquals("student", response.jsonPath().getString("accountType"));
 
-        Map<Object, Object> attendanceData = response.jsonPath().getMap("attendancePercent");
+        Map<Object, Object> attendanceData = response.jsonPath().getMap("attendancePercentage");
         System.out.println(attendanceData);
 
         assertEquals(100.00, (float) attendanceData.get("john doe"));

@@ -6,7 +6,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -36,12 +36,14 @@ public class BaseIT {
         return response.jsonPath().getInt("id");
     }
 
-    protected static int createRecord(int memberId, int sessionId, int scannerId) {
+    protected static int createRecord(int memberId, int sessionId, int scannerId, String scanDateTime) {
         RecordPayload recordPayload;
         MemberPayload memberPayload;
         SessionPayload sessionPayload;
 
         recordPayload = new RecordPayload();
+        recordPayload.setScanDateTime(LocalDateTime.parse(scanDateTime));
+
         memberPayload = new MemberPayload();
         memberPayload.setId((long) memberId);
         recordPayload.setMember(memberPayload);
@@ -68,7 +70,10 @@ public class BaseIT {
         return response.jsonPath().getInt("id");
     }
 
-    protected static void createMemberRegistration(int eventId, int memberId, int accountTypeId) {
+    protected static void createMemberRegistration(
+            int eventId, int memberId, int accountTypeId,
+            String startDateTime, String endDateTime
+    ) {
         EventPayload eventPayload;
         MemberPayload memberPayload;
 
@@ -80,8 +85,8 @@ public class BaseIT {
         AccountTypePayload accountTypePayload = new AccountTypePayload();
         accountTypePayload.setId((long) accountTypeId);
         eventPayload.setAccountType(accountTypePayload);
-        eventPayload.setStartDateTime(LocalDate.parse("2024-02-02").atTime(12, 0));
-        eventPayload.setEndDateTime(LocalDate.parse("2024-09-30").atTime(12, 0));
+        eventPayload.setStartDateTime(LocalDateTime.parse(startDateTime));
+        eventPayload.setEndDateTime(LocalDateTime.parse(endDateTime));
 
         Response response = given()
                 .contentType(ContentType.JSON)
@@ -95,12 +100,14 @@ public class BaseIT {
         System.out.println(response.getBody().asString());
     }
 
-    protected static int createSession(int eventId) {
+    protected static int createSession(int eventId, String startDateTime, String endDateTime) {
         Response response;
         EventPayload eventPayload;
         SessionPayload sessionPayload;
 
         sessionPayload = new SessionPayload();
+        sessionPayload.setStartDateTime(LocalDateTime.parse(startDateTime));
+        sessionPayload.setEndDateTime(LocalDateTime.parse(endDateTime));
         eventPayload = new EventPayload();
         eventPayload.setId((long) eventId);
         sessionPayload.setEvent(eventPayload);
@@ -118,20 +125,27 @@ public class BaseIT {
         return response.jsonPath().getInt("id");
     }
 
-    protected static int createEvent() {
+    protected static int createEvent(
+            String startDateTime,
+            String endDateTime
+    ) {
         EventPayload eventPayload;
         Response response;
 
         eventPayload = new EventPayload();
         eventPayload.setName("Test Event");
+        eventPayload.setStartDateTime(LocalDateTime.parse(startDateTime));
+        eventPayload.setEndDateTime(LocalDateTime.parse(endDateTime));
 
         response = RestAssured
                 .given()
+                .log().all()
                 .contentType(ContentType.JSON)
                 .body(eventPayload)
                 .when()
                 .post("/events")
                 .then()
+                .log().all()
                 .extract()
                 .response();
 

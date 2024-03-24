@@ -12,5 +12,9 @@ public interface MemberRepository extends BaseRepository<Member, Long> {
     @Query("SELECT r.session.event.members FROM Record r " +
             "WHERE r.session.event.accountType.name = :accountType" +
             "   AND :from <= r.scanDateTime AND r.scanDateTime <= :to")
-    List<Member> getByEventAccountTypeAndScanDateTimeBetween(String accountType, LocalDateTime from, LocalDateTime to);
+    List<Member> getByEventAccountTypeAndScanDateTimeBetween(
+            String accountType,
+            LocalDateTime from,
+            LocalDateTime to
+    );
 }
