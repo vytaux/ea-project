@@ -18,7 +18,7 @@ public interface RecordRepository extends BaseRepository<Record, Long> {
     @Query("SELECT COUNT(r) FROM Record r " +
             " WHERE r.member = :member " +
             "   AND r.session.event.accountType.name = :accountType" +
-            "   AND :from <= r.scanDateTime AND r.scanDateTime <= :to")
+            "   AND r.scanDateTime BETWEEN :from AND :to")
     int countByMemberAndAccountTypeAndScanDateTimeBetween(
             Member member,
             String accountType,
