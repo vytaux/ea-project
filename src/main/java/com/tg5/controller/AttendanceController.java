@@ -1,7 +1,7 @@
 package com.tg5.controller;
 
 import com.tg5.service.AttendanceService;
-import com.tg5.service.reports.AttendanceByAccountTypeByDateFromToReport;
+import com.tg5.service.reports.AttendanceByAccountTypeAndWithinIntervalReport;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +33,7 @@ public class AttendanceController {
     }
 
     @GetMapping("/accounts/{accountType}/attendance/{fromDate}/{toDate}")
-    public AttendanceByAccountTypeByDateFromToReport getMemberEventAttendanceByAccountTypeAndDate(
+    public AttendanceByAccountTypeAndWithinIntervalReport getMemberEventAttendanceByAccountTypeAndDate(
             @PathVariable String accountType,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
             @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate

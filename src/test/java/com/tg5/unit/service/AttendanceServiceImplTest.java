@@ -3,7 +3,7 @@ package com.tg5.unit.service;
 import com.tg5.domain.Event;
 import com.tg5.domain.Member;
 import com.tg5.domain.Session;
-import com.tg5.service.reports.AttendanceByAccountTypeByDateFromToReport;
+import com.tg5.service.reports.AttendanceByAccountTypeAndWithinIntervalReport;
 import com.tg5.repository.EventRepository;
 import com.tg5.repository.RecordRepository;
 import com.tg5.service.AttendanceServiceImpl;
@@ -12,12 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,7 +49,7 @@ public class AttendanceServiceImplTest {
                 .thenReturn(1);
 
         // Call the method
-        AttendanceByAccountTypeByDateFromToReport response =
+        AttendanceByAccountTypeAndWithinIntervalReport response =
                 attendanceService.getAttendanceByAccountTypeByDateFromTo(
                         "student",
                         "2022-01-01",
@@ -62,8 +59,8 @@ public class AttendanceServiceImplTest {
         // Assert the returned data
         assertNotNull(response);
         assertEquals("student", response.getAccountType());
-        assertEquals(1, response.getAttendancePercent().size());
-        assertTrue(response.getAttendancePercent().containsKey("Test Member"));
-        assertEquals(50.0, response.getAttendancePercent().get("Test Member"));
+        assertEquals(1, response.getAttendancePercentage().size());
+        assertTrue(response.getAttendancePercentage().containsKey("Test Member"));
+        assertEquals(50.0, response.getAttendancePercentage().get("Test Member"));
     }
 }

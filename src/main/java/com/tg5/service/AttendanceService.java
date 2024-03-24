@@ -1,6 +1,6 @@
 package com.tg5.service;
 
-import com.tg5.service.reports.AttendanceByAccountTypeByDateFromToReport;
+import com.tg5.service.reports.AttendanceByAccountTypeAndWithinIntervalReport;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -13,7 +13,7 @@ public interface AttendanceService {
 
     Map<String, Double> calculateAttendancePerMemberForEvent(Long memberId, Long eventId);
 
-    AttendanceByAccountTypeByDateFromToReport getAttendanceByAccountTypeByDateFromTo(
+    AttendanceByAccountTypeAndWithinIntervalReport getAttendanceByAccountTypeByDateFromTo(
             String accountType,
             LocalDate fromDate,
             LocalDate toDate

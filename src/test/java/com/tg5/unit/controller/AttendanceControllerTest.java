@@ -2,7 +2,7 @@ package com.tg5.unit.controller;
 
 import com.tg5.controller.AttendanceController;
 import com.tg5.service.AttendanceService;
-import com.tg5.service.reports.AttendanceByAccountTypeByDateFromToReport;
+import com.tg5.service.reports.AttendanceByAccountTypeAndWithinIntervalReport;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,7 +33,7 @@ public class AttendanceControllerTest {
     @Test
     public void testGetMemberEventAttendanceByAccountTypeAndDate() throws Exception {
         when(attendanceService.getAttendanceByAccountTypeByDateFromTo(any(String.class), anyString(), anyString()))
-                .thenReturn(new AttendanceByAccountTypeByDateFromToReport());
+                .thenReturn(new AttendanceByAccountTypeAndWithinIntervalReport());
 
         mockMvc.perform(get("/accounts/student/attendance/2022-01-01/2022-12-31")
                         .contentType(MediaType.APPLICATION_JSON))

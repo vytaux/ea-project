@@ -1,26 +1,17 @@
 package com.tg5.repository;
 
 import com.azure.core.annotation.QueryParam;
-import com.tg5.domain.AccountType;
 import com.tg5.domain.Event;
-import com.tg5.domain.Member;
 import edu.miu.common.repository.BaseRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
-
 
 public interface EventRepository extends BaseRepository<Event, Long> {
 
-    @Query("SELECT e FROM Event e " +
-            "WHERE e.accountType.name = :accountType " +
-            "   AND :from <= e.startDateTime" +
-            "   AND e.endDateTime <= :to"
-    )
+    @Query("SELECT e FROM Event e WHERE e.accountType.name = :accountType" +
+            " AND :from <= e.startDateTime AND e.endDateTime <= :to")
     List<Event> getByAccountTypeAndDateFromTo(
             @QueryParam("accountType") String accountType,
             @QueryParam("from") LocalDate from,
