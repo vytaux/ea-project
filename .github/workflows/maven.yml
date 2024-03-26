@@ -15,7 +15,21 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+
+  docker-compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start Docker Compose services
+        run: docker-compose up -d
+
+#      - name: Wait for database to be ready
+#        run: docker-compose exec your_database_container wait-for-it.sh -t 60 your_database_host:your_database_port
+
+  build-and-test:
 
     runs-on: ubuntu-latest
 
