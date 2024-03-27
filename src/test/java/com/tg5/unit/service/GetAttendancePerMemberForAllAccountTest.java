@@ -8,13 +8,14 @@ import com.tg5.domain.Session;
 import com.tg5.repository.EventRepository;
 import com.tg5.repository.MemberRepository;
 import com.tg5.repository.RecordRepository;
+import com.tg5.repository.SessionRepository;
 import com.tg5.service.AttendanceServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,9 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
-public class GetAttendancePerMemberForAllAccount {
-    @Autowired
+@ExtendWith(SpringExtension.class)
+public class GetAttendancePerMemberForAllAccountTest {
+
     private AttendanceServiceImpl attendanceService;
 
     @MockBean
@@ -40,6 +41,19 @@ public class GetAttendancePerMemberForAllAccount {
 
     @MockBean
     private MemberRepository memberRepository;
+
+    @MockBean
+    private SessionRepository sessionRepository;
+
+    @BeforeEach
+    void setUp() {
+        attendanceService = new AttendanceServiceImpl(
+                memberRepository,
+                eventRepository,
+                recordRepository,
+                sessionRepository
+        );
+    }
 
     @Test
     public void getAttendancePerMemberForAllAccountTest() {
@@ -66,8 +80,8 @@ public class GetAttendancePerMemberForAllAccount {
 
 
         // mock sessions
-        mockEvent1.setSessions(Arrays.asList( new Session(),  new Session()));
-        mockEvent2.setSessions(Arrays.asList( new Session(),  new Session()));
+        mockEvent1.setSessions(Arrays.asList(new Session(), new Session()));
+        mockEvent2.setSessions(Arrays.asList(new Session(), new Session()));
         mockEvent1.setMembers(List.of(mockMember));
         mockEvent2.setMembers(List.of(mockMember));
 

@@ -5,12 +5,16 @@ import com.tg5.domain.Role;
 import com.tg5.repository.AccountTypeRepository;
 import com.tg5.repository.RoleRepository;
 import com.tg5.service.RoleService;
+import com.tg5.service.RoleServiceImpl;
 import com.tg5.service.contract.RolePayload;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -19,10 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
 public class RoleServiceImplTest {
 
-    @Autowired
     private RoleService roleService;
 
     @MockBean
@@ -30,6 +33,11 @@ public class RoleServiceImplTest {
 
     @MockBean
     private AccountTypeRepository accountTypeRepository;
+
+    @BeforeEach
+    void setUp() {
+        roleService = new RoleServiceImpl(accountTypeRepository, roleRepository);
+    }
 
     @Test
     public void testCreate() {
