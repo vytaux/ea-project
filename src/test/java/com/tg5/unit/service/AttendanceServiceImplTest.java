@@ -92,6 +92,6 @@ public class AttendanceServiceImplTest {
         assertEquals("student", response.getAccountType());
         assertEquals(1, response.getAttendancePercentage().size());
         assertTrue(response.getAttendancePercentage().containsKey("Test Member"));
-        assertEquals(50.0, response.getAttendancePercentage().get("Test Member"));
+        assertEquals(50.0, (double) response.getAttendancePercentage().get("Test Member"));
     }
 }
