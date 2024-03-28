@@ -6,6 +6,7 @@ import edu.miu.common.repository.BaseRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface SessionRepository extends BaseRepository<Session, Long> {
 

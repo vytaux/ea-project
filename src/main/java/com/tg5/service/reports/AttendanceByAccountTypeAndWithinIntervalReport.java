@@ -12,5 +12,5 @@ public class AttendanceByAccountTypeAndWithinIntervalReport {
     private String accountType;
     private LocalDate fromDate;
     private LocalDate toDate;
-    private Map<String, Double> attendancePercentage = new HashMap<>();
+    private Map<String, Integer> attendancePercentage = new HashMap<>();
 }

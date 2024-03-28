@@ -23,7 +23,6 @@ public class SeederServiceImpl implements SeederService {
     private EntityManager em;
 
     private List<Member> members = new ArrayList<>();
-    private List<Session> sessions = new ArrayList<>();
 
     @PersistenceUnit
     public void setEntityManagerFactory(EntityManagerFactory emf) {
@@ -45,7 +44,8 @@ public class SeederServiceImpl implements SeederService {
 
         int randomSeed = getRandomIntSeed();
         AccountType accountType = createAccountType();
-        generateMembers(amount*2, randomSeed);
+        members = generateMembers(amount*2, randomSeed);
+
         for (int i = 0; i < amount; i++) {
             generateEvent(i, accountType, randomSeed);
         }
@@ -58,12 +58,14 @@ public class SeederServiceImpl implements SeederService {
     private AccountType createAccountType() {
         AccountType accountType = new AccountType();
         accountType.setName("accountType");
+
         em.persist(accountType);
+
         return accountType;
     }
 
-    public void generateMembers(int amount, int randomSeed) {
-        members = new ArrayList<>();
+    public List<Member> generateMembers(int amount, int randomSeed) {
+        List<Member> members = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             Member member = new Member();
             member.setFirstname("firstName" + randomSeed + i);
@@ -73,28 +75,23 @@ public class SeederServiceImpl implements SeederService {
             em.persist(member);
             members.add(member);
         }
+
+        return members;
     }
 
-    private Set<Member> getRandomUniqueMembers(int randomInt) {
+    private List<Member> getRandomUniqueMembers(List<Member> members, int howMany) {
         Set<Member> randomMembers = new HashSet<>();
-        for (int i = 0; i < randomInt; i++) {
-            randomMembers.add(members.get(getRandomInt(0, members.size())));
+        for (int i = 0; i < howMany; i++) {
+            int randomMemberIndex = getRandomInt(0, members.size());
+            Member randomMember = members.get(randomMemberIndex);
+            randomMembers.add(randomMember);
         }
 
-        return randomMembers;
-    }
-
-    private Set<Session> getRandomUniqueSessions(int randomInt) {
-        Set<Session> randomSessions = new HashSet<>();
-        for (int i = 0; i < randomInt; i++) {
-            randomSessions.add(sessions.get(getRandomInt(0, sessions.size())));
-        }
-
-        return randomSessions;
+        return randomMembers.stream().toList();
     }
 
     public void generateEvent(int i, AccountType accountType, int randomSeed) {
-        List<Member> eventMembers = getRandomUniqueMembers(getRandomInt(10, 30)).stream().toList();
+        List<Member> eventMembers = getRandomUniqueMembers(members, getRandomInt(members.size()/2, members.size()));
 
         Event event = new Event();
         event.setName("event" + randomSeed + i);
@@ -102,29 +99,43 @@ public class SeederServiceImpl implements SeederService {
         event.setEndDateTime(LocalDateTime.parse("2024-06-06T00:00:00"));
         event.setMembers(eventMembers);
         event.setAccountType(accountType);
+
         em.persist(event);
 
         int sessionsCount = getRandomInt(10, 30);
+        List<Session> sessions = new ArrayList<>();
         for (int j = 0; j < sessionsCount; j++) {
             Session session = new Session();
             session.setName("session" + randomSeed + i + j);
             session.setEvent(event);
             session.setStartDateTime(LocalDateTime.parse("2024-01-02T00:00:00"));
             session.setEndDateTime(LocalDateTime.parse("2024-06-06T00:00:00"));
+
             em.persist(session);
             sessions.add(session);
         }
 
         // records
-        Set<Member> randomUniqueMembers = getRandomUniqueMembers(getRandomInt(10, 30));
-        for (Member member : randomUniqueMembers) {
-            Set<Session> randomUniqueSessions = getRandomUniqueSessions(getRandomInt(10, 30));
-            for (Session session : randomUniqueSessions) {
+        List<Member> randomMembers = getRandomUniqueMembers(eventMembers, getRandomInt(eventMembers.size()-1, eventMembers.size()));
+        for (Member member : randomMembers) {
+            Set<Session> randomSessions = getRandomSessions(sessions, getRandomInt(sessions.size()-1, sessions.size()));
+            for (Session session : randomSessions) {
                 Record record = new Record();
                 record.setMember(member);
                 record.setSession(session);
+                record.setScanDateTime(LocalDateTime.parse("2024-01-12T00:00:00"));
+
                 em.persist(record);
             }
         }
+    }
+
+    private Set<Session> getRandomSessions(List<Session> sessions, int randomInt) {
+        Set<Session> randomSessions = new HashSet<>();
+        for (int i = 0; i < randomInt; i++) {
+            randomSessions.add(sessions.get(getRandomInt(0, sessions.size())));
+        }
+
+        return randomSessions;
     }
 }

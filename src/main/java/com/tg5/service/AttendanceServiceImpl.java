@@ -1,8 +1,10 @@
 package com.tg5.service;
 
 import com.tg5.domain.AccountType;
+import com.tg5.domain.Record;
 import com.tg5.domain.Event;
 import com.tg5.domain.Member;
+import com.tg5.domain.Session;
 import com.tg5.repository.MemberRepository;
 import com.tg5.repository.SessionRepository;
 import com.tg5.service.reports.AttendanceByAccountTypeAndWithinIntervalReport;
@@ -97,7 +99,8 @@ public class AttendanceServiceImpl implements AttendanceService {
             int totalAttendance = recordRepository
                     .countByMemberAndAccountTypeAndScanDateTimeBetween(member, accountType, fromDateTime, toDateTime);
             double percentage = ((double) totalAttendance / totalSessions) * 100;
-            response.getAttendancePercentage().put(member.getFullName(), percentage);
+            int roundedPercentage = (int) Math.round(percentage);
+            response.getAttendancePercentage().put(member.getFullName(), roundedPercentage);
         }
 
         return response;
