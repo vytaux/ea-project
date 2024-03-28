@@ -16,8 +16,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 605203149703-u7urp1jt254bpndaolstl8r0dvh3ln88.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 605203149703-b0b4muf9dviim6d7ubd6gmoklt0t2hs6.apps.googleusercontent.com
+            client-secret: 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
   application:
     name: Electronic Badge/Attendance System
   datasource:

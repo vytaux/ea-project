@@ -1,17 +1,10 @@
 package com.tg5.integration.controller;
 
 import com.tg5.integration.BaseIT;
-import com.tg5.service.contract.*;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
